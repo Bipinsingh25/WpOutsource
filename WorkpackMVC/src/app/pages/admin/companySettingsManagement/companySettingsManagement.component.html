@@ -1,0 +1,31 @@
+<link href="../../../../../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet"
+      type="text/css" />
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light portlet-fit bordered" *blockUI="'blockUI-list'">
+      <div class="portlet-body">
+        <div class="tabbable-line">
+          <ul class="nav nav-tabs ">
+            <li [routerLinkActive]="['active']">
+              <a data-toggle="tab" [routerLink]="['taskTypes']">
+                Task Types
+              </a>
+            </li>
+            <li [routerLinkActive]="['active']">
+              <a data-toggle="tab" [routerLink]="['companyDetails']">
+                Company Details
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_15_1">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

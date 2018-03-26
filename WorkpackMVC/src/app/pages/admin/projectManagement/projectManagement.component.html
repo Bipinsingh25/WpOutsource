@@ -1,0 +1,27 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light portlet-fit bordered" *blockUI="'blockUI-list'">
+      <div class="portlet-body">
+        <div class="tabbable-line">
+          <ul class="nav nav-tabs ">
+            <li [routerLinkActive]="['active']">
+              <a data-toggle="tab" [routerLink]="['project']"> Project </a>
+            </li>
+            <li>
+              <a data-toggle="tab"> Test </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_15_1">
+              <router-outlet></router-outlet>
+            </div>
+            <div class="tab-pane" id="tab_15_2">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

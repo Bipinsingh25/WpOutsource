@@ -1,0 +1,231 @@
+<link href="../../../../../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+
+<div class="portlet-body form">
+
+  <form class="horizontal-form" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+    <div class="form-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div [ngClass]="{'form-group':true,'has-error': projectForm.get('projectName').errors && projectForm.get('projectName').touched }">
+            <label class="control-label">
+              Project Name
+              <span class="required" aria-required="true"> * </span>
+            </label>
+            <input type="text" name="txtProjectName" class="form-control" tabindex="1" formControlName="projectName" />
+            <span class="help-block" *ngIf="projectForm.get('projectName').errors && projectForm.get('projectName').touched">
+              Please enter Project Name.
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div [ngClass]="{'form-group':true,'has-error': projectForm.get('projectType').errors && projectForm.get('projectType').touched }">
+            <label class="control-label">Project Type</label>
+            <select class="form-control" id="ddProjectType" tabindex="2" name="designation" formControlName="projectType">
+              <option value="0">Select</option>
+              <option *ngFor="let prType of projectType$ | async" value={{prType.ProjectTypeID}}>
+                {{prType.ProjectType}}
+              </option>
+            </select>
+            <span class="help-block" *ngIf="projectForm.get('projectType').errors && projectForm.get('projectType').touched">
+              Please select Project Type.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div [ngClass]="{'form-group':true,'has-error': projectForm.get('projectNo').errors && projectForm.get('projectNo').touched }">
+            <label class="control-label">
+              Project No
+              <span class="required" aria-required="true"> * </span>
+            </label>
+            <input type="text" class="form-control" tabindex="3" name="txtProjectNo" formControlName="projectNo" />
+            <span class="help-block" *ngIf="projectForm.get('projectNo').errors && projectForm.get('projectNo').touched">
+              Please enter Project No.
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group" [ngClass]="{'form-group':true,'has-error': projectForm.get('projectDesc').errors && projectForm.get('projectDesc').touched}">
+            <label class="control-label">
+              Project Description
+              <span class="required" aria-required="true"> * </span>
+            </label>
+            <input type="text" class="form-control" tabindex="4" name="txtProjectDesc" formControlName="projectDesc" />
+            <span class="help-block" *ngIf="projectForm.get('projectDesc').errors && projectForm.get('projectDesc').touched">
+              Please enter Project Description.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div [ngClass]="{'form-group':true,'has-error': projectForm.get('projectManager').errors && projectForm.get('projectManager').touched }">
+            <label class="control-label">Project Manager</label>
+            <input class="form-control" type="text" tabindex="5" name="txtProjectManager" formControlName="projectManager" />
+            <span class="help-block" *ngIf="projectForm.get('projectManager').errors && projectForm.get('projectManager').touched">
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div [ngClass]="{'form-group':true,'has-error': projectForm.get('client').errors && projectForm.get('client').touched }">
+            <label class="control-label">Client</label>
+            <select class="form-control" name="ddClient" tabindex="6" formControlName="client">
+              <option value="0">Select</option>
+              <option *ngFor="let client of client$ | async" value="{{client.ClientID}}">
+                {{client.Clientname}}
+              </option>
+            </select>
+            <span class="help-block" *ngIf="projectForm.get('client').errors && projectForm.get('client').touched">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div [ngClass]="{'form-group':true,'has-error': projectForm.get('projectStatus').errors && projectForm.get('projectStatus').touched }">
+            <label class="control-label">
+              Project Status
+              <span class="required" aria-required="true"> * </span>
+            </label>
+            <select class="form-control" name="ddProjectStatus" tabindex="7" formControlName="projectStatus">
+              <option value="0">Select</option>
+              <option *ngFor="let prStatus of projectStatus$ | async" value="{{prStatus.ProjectStatusID}}">
+                {{prStatus.ProjectStatus}}
+              </option>
+            </select>
+            <span class="help-block" *ngIf="projectForm.get('projectStatus').errors && projectForm.get('projectStatus').touched">
+              Please select Project Status.
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div [ngClass]="{'form-group':true, 'has-error':projectForm.get('priority').errors && projectForm.get('priority').touched }">
+            <label class="control-label">
+              Priority
+              <span class="required" aria-required="true"> * </span>
+            </label>
+            <select class="form-control" name="ddPriority" tabindex="8" formControlName="priority">
+              <option value="0">Select</option>
+              <option *ngFor="let priority of priority$ | async" value="{{priority.PriorityID}}">
+                {{priority.PriorityName}}
+              </option>
+            </select>
+            <span class="help-block" *ngIf="projectForm.get('priority').errors && projectForm.get('priority').touched">
+              Please select priority.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Start Date</label>
+            <input type="date" class="form-control" name="txtStartDate" tabindex="9" formControlName="startDate" />
+            <span class="help-block">
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">End Date</label>
+            <input class="form-control" type="date" name="txtEndDate" tabindex="10" formControlName="endDate" />
+            <span class="help-block">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Project Template</label>
+            <select class="form-control" name="ddProjectTemplate" tabindex="11" formControlName="projectTemplate">
+              <option value="0">Select</option>
+              <option *ngFor="let prTemplate of projectTemplate$ | async" value="{{prTemplate.NormSetID}}">
+                {{prTemplate.NormSetName}}
+              </option>
+            </select>
+            <span class="help-block">
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Project Location</label>
+            <input type="text" class="form-control" tabindex="12" name="txtProjectLocation" formControlName="projectLocation" />
+            <span class="help-block">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Project Admin</label>
+            <select class="form-control" name="ddProjectAdmin" tabindex="13" formControlName="projectAdmin">
+              <option value="0">Select</option>
+              <option *ngFor="let user of usersForProjectAdminAndProjectMember$ | async" value="{{user.Id}}">
+                {{user.Value}}
+              </option>
+            </select>
+            <span class="help-block">
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">External Members</label>
+            <select class="form-control" name="ddExternalMembers" tabindex="14" formControlName="externalMembers">
+              <option value="0">Select</option>
+              <option *ngFor="let exUser of exUser$ | async" value="{{exUser.ExUserID}}">
+                {{exUser.ExUser}}
+              </option>
+            </select>
+            <span class="help-block">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Project Team Member</label>
+            <select class="form-control" name="ddProjectMember" tabindex="15" formControlName="projectMember">
+              <option value="0">Select</option>
+              <option *ngFor="let user of usersForProjectAdminAndProjectMember$ | async" value="{{user.Id}}">
+                {{user.Value}}
+              </option>
+            </select>
+            <span class="help-block">
+            </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Similar Projects</label>
+            <select class="form-control" name="ddSimilarProjects" tabindex="15" formControlName="similarProjects">
+              <option value="0">Select</option>
+              <option *ngFor="let project of project$ | async" value="{{project.ProjectID}}">
+                {{project.ProjectName}}
+              </option>
+            </select>
+            <span class="help-block">
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="control-label">Attachments</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions right">
+      <button type="button" class="btn default">Cancel</button>
+      <button type="submit" class="btn blue"><i class="fa fa-check"></i>Save</button>
+    </div>
+  </form>
+
+</div>

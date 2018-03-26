@@ -1,0 +1,13 @@
+﻿<block-ui>
+  <div class="table-toolbar">
+    <div class="row">
+      <div class="col-md-6">
+      </div>
+    </div>
+  </div>
+  <div id="example">
+    <hot-table [data]="data" hotId="hotDesignationInstance" (mousedown)="mousedown($event)" (afterChange)="afterChange($event)"
+              (hotRegisterer)="hotRegisterer" [colHeaders]="colHeaders" [colWidths]="colWidths" [columns]="columns" [settings]="options">
+    </hot-table>
+  </div>
+</block-ui>

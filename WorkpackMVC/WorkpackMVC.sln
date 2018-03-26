@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkpackMVC", "WorkpackMVC.csproj", "{4384465E-E903-470E-90D0-41686F072A7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLibrary", "..\CommonLibrary\CommonLibrary.csproj", "{83D20CEC-5FD4-4D71-AB77-7CE2AE092A89}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLibrary", "..\BusinessLibrary\BusinessLibrary.csproj", "{4F9BE32C-F4BA-4CE3-BD48-9719F8DE5EB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLibrary", "..\DataAccessLibrary\DataAccessLibrary.csproj", "{0582AC15-50BE-4919-BEBF-B05E6317A580}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainModelLibrary", "..\DomainModelLibrary\DomainModelLibrary.csproj", "{A6F843BE-CE28-45A9-8E46-E1FEC08F6785}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4384465E-E903-470E-90D0-41686F072A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4384465E-E903-470E-90D0-41686F072A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4384465E-E903-470E-90D0-41686F072A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4384465E-E903-470E-90D0-41686F072A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D20CEC-5FD4-4D71-AB77-7CE2AE092A89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D20CEC-5FD4-4D71-AB77-7CE2AE092A89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D20CEC-5FD4-4D71-AB77-7CE2AE092A89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D20CEC-5FD4-4D71-AB77-7CE2AE092A89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F9BE32C-F4BA-4CE3-BD48-9719F8DE5EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F9BE32C-F4BA-4CE3-BD48-9719F8DE5EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F9BE32C-F4BA-4CE3-BD48-9719F8DE5EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F9BE32C-F4BA-4CE3-BD48-9719F8DE5EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0582AC15-50BE-4919-BEBF-B05E6317A580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0582AC15-50BE-4919-BEBF-B05E6317A580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0582AC15-50BE-4919-BEBF-B05E6317A580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0582AC15-50BE-4919-BEBF-B05E6317A580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6F843BE-CE28-45A9-8E46-E1FEC08F6785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6F843BE-CE28-45A9-8E46-E1FEC08F6785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6F843BE-CE28-45A9-8E46-E1FEC08F6785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6F843BE-CE28-45A9-8E46-E1FEC08F6785}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://server2008:8080/tfs/projects
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = WorkpackMVC.csproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\CommonLibrary\\CommonLibrary.csproj
+		SccProjectName2 = ../CommonLibrary
+		SccLocalPath2 = ..\\CommonLibrary
+		SccProjectUniqueName3 = ..\\BusinessLibrary\\BusinessLibrary.csproj
+		SccProjectName3 = ../BusinessLibrary
+		SccLocalPath3 = ..\\BusinessLibrary
+		SccProjectUniqueName4 = ..\\DataAccessLibrary\\DataAccessLibrary.csproj
+		SccProjectName4 = ../DataAccessLibrary
+		SccLocalPath4 = ..\\DataAccessLibrary
+		SccProjectUniqueName5 = ..\\DomainModelLibrary\\DomainModelLibrary.csproj
+		SccProjectName5 = ../DomainModelLibrary
+		SccLocalPath5 = ..\\DomainModelLibrary
+	EndGlobalSection
+EndGlobal

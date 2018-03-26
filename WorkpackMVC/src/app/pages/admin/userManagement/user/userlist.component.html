@@ -1,0 +1,64 @@
+
+<div class="table-toolbar">
+  <div class="row">
+    <div class="col-md-6">
+      <a class="btn blue" data-toggle="tab" [routerLink]="['./../user',0]">
+        <i class="fa fa-plus"></i>
+        <span>Create</span>
+      </a>
+    </div>
+    <div class="col-md-6">
+      <div class="btn-group pull-right">
+        <button class="btn green btn-outline dropdown-toggle" data-toggle="dropdown">
+          Tools
+          <i class="fa fa-angle-down"></i>
+        </button>
+        <ul class="dropdown-menu pull-right">
+          <li>
+            <a href="javascript:;"> Print </a>
+          </li>
+          <li>
+            <a href="javascript:;"> Save as PDF </a>
+          </li>
+          <li>
+            <a href="javascript:;"> Export to Excel </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="example">
+
+
+  <div class="row">
+    <!--begin: widget 1-1 -->
+    <div class="mt-widget-1 col-sm-2" style="margin:10px;width: 18%;" *ngFor="let user of userList$ | async;">
+      <div class="mt-icon">
+        <a href="#" [routerLink]="['/userManagement/user', user.UserID]">
+          <i class="fa fa-edit"></i>
+        </a>
+      </div>
+      <div class="mt-img">
+        <img src="../assets/pages/media/users/UserDefault.png" onerror="this.src = '../assets/pages/media/users/UserDefault.png';"
+             style="width:80px;height:80px;"/>
+      </div>
+      <div class="mt-body">
+        <h3 class="mt-username" style="margin: 5px 0px;">
+          {{user.FirstName}} {{user.LastName}}
+        </h3>
+        <p class="mt-user-title"> {{user.DepartmentName}} </p>
+        <p class="mt-user-title"> {{user.DesignationName}} </p>
+      </div>
+    </div>
+    <!--end: widget 1-1 -->
+  </div>
+
+
+  <!--<hot-table [data]="data" hotId="hotUserInstance" (mousedown)="mousedown($event)" (hotRegisterer)="hotRegisterer"
+             [colHeaders]="colHeaders" [columns]="columns" [colWidths]="colWidths" [settings]="options">
+  </hot-table>-->
+
+</div>
+
