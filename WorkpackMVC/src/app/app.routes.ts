@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'userManagement', pathMatch: 'full' },
+    { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardModule' },
     { path: 'userManagement', loadChildren: './pages/admin/userManagement/userManagement.module#UserManagementModule' },
     { path: 'projectManagement', loadChildren: './pages/admin/projectManagement/projectManagement.module#ProjectManagementModule' },
     { path: 'companySettingsManagement', loadChildren: './pages/admin/companySettingsManagement/companySettingsManagement.module#CompanySettingsManagementModule' },

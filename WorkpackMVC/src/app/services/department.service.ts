@@ -15,7 +15,7 @@ export class DepartmentService {
     private headers: HttpHeaders;
 
     constructor(protected httpClient: HttpClient,
-        private store: Store<fromRoot.AppState>,
+                private store: Store<fromRoot.AppState>,
         private router: Router
     ) { }
 

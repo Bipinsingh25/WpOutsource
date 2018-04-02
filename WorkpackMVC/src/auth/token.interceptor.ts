@@ -19,6 +19,10 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    var vUrl = "http://104.42.227.90/workpackangular";
+    request = request.clone({
+      url: vUrl + request.url
+    });
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.getLocalToken()}`

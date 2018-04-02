@@ -1,0 +1,66 @@
+<div *ngIf="dashBoardGridData">
+  <div class="portlet light portlet-fit bordered">
+    <div class="portlet-title">
+      <div class="caption">
+        <span class="caption-subject font-dark bold uppercase">Ongoing Projects</span>
+      </div>
+      <div class="actions">
+        Test
+      </div>
+    </div>
+    <div class="portlet-body">
+      <div class="table-scrollable">
+        <table class="table table-bordered table-hover">
+          <thead>
+          <tr>
+            <th class="col-sm-1">Manage</th>
+            <th class="col-sm-2">Project Name</th>
+            <th class="col-sm-1">Project Code</th>
+            <th class="col-sm-2">Project Manager</th>
+            <th class="col-sm-6">Progress Roadmap</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let gridData of dashBoardGridData; let i=index">
+            <td class="col-sm-1">
+              <div class="btn-group">
+                <a class="btn btn-sm default" href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-edit"></i>
+                  <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="fa fa-eye"></i> View Details </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="fa fa-edit"></i> Task List </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="fa fa-edit"></i> Material List </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="fa fa-edit"></i> Document List </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="fa fa-calendar"></i> Schedule </a>
+                  </li>
+                </ul>
+              </div>
+            </td>
+            <td class="col-sm-2">{{gridData.ProjectName}}</td>
+            <td class="col-sm-1">{{gridData.ProjectCode}}</td>
+            <td class="col-sm-2">{{gridData.ProjectLeader}}</td>
+            <td class="col-sm-6">Yet to come</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

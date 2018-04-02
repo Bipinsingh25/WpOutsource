@@ -25,7 +25,7 @@ const components = [
   UserListComponent,
   DepartmentComponent,
   DesignationComponent,
-  RoleComponent
+  RoleComponent,
 ]
 
 @NgModule({

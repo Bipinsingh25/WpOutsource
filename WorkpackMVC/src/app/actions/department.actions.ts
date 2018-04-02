@@ -1,5 +1,5 @@
 ﻿import { Action } from './../reducers/action.interface';
-import { Department } from "./../models/department";
+
 
 export const ActionTypes = {
     GET_DEPARTMENT_LIST: 'Get department list',
@@ -13,7 +13,7 @@ export const ActionTypes = {
     DELETE_DEPARTMENT: 'Delete department',
     DELETE_DEPARTMENT_SUCCESS: 'Delete department success',
     DELETE_DEPARTMENT_ERROR: 'Delete department error',
-} 
+}
 
 export class GetDepartmentAction implements Action {
     type = ActionTypes.GET_DEPARTMENT_LIST;

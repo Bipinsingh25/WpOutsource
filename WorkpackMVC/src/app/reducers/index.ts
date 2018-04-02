@@ -1,10 +1,11 @@
-import { environment } from './../../environments/environment';
-import { combineReducers } from '@ngrx/store';
-import { compose, ActionReducerMap } from '@ngrx/store';
+import {environment} from './../../environments/environment';
+import {combineReducers} from '@ngrx/store';
+import {compose, ActionReducerMap} from '@ngrx/store';
 
 import * as fromClientReducer from './client.reducers';
 import * as fromDepartmentReducer from './department.reducers';
 import * as fromDesignationReducer from './designation.reducers';
+import * as fromDashboardReducer from './dashboard.reducers';
 import * as fromProjectReducer from './project.reducers';
 import * as fromProjectTypeReducer from './projectType.reducers';
 import * as fromProjectStatusReducer from './projectStatus.reducers';
@@ -15,13 +16,14 @@ import * as fromUserReducer from './user.reducer';
 import * as fromProjectTemplateReducer from './projectTemplate.reducers';
 import * as fromExUserReducer from './exUser.reducers';
 
-import { storeFreeze } from 'ngrx-store-freeze';
-import { createSelector } from 'reselect';
+import {storeFreeze} from 'ngrx-store-freeze';
+import {createSelector} from 'reselect';
 
 export interface AppState {
   client: fromClientReducer.State;
   department: fromDepartmentReducer.State;
   designation: fromDesignationReducer.State;
+  dashboard: fromDashboardReducer.State;
   project: fromProjectReducer.State;
   projectType: fromProjectTypeReducer.State;
   projectStatus: fromProjectStatusReducer.State;
@@ -38,6 +40,7 @@ const reducers = {
   client: fromClientReducer.reducer,
   department: fromDepartmentReducer.reducer,
   designation: fromDesignationReducer.reducer,
+  dashboard: fromDashboardReducer.reducer,
   project: fromProjectReducer.reducer,
   projectType: fromProjectTypeReducer.reducer,
   projectStatus: fromProjectStatusReducer.reducer,
@@ -119,6 +122,15 @@ export function getDesignationState(state: AppState): fromDesignationReducer.Sta
 }
 
 export const getDesignation = compose(fromDesignationReducer.getDesignation, getDesignationState);
+
+
+// =============== Dashboard states and compose methods ===============================================
+
+export function getDashboardState(state: AppState): fromDashboardReducer.State {
+  return state && state.dashboard;
+}
+
+export const getDashboard = compose(fromDashboardReducer.getDashboard, getDashboardState);
 
 
 // =============== Client states and compose methods ===================================================

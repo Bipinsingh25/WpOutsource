@@ -18,6 +18,7 @@ import { ProjectStatusEffects } from "./projectStatus.effects";
 import { ProjectTemplateEffects } from "./projectTemplate.effects";
 import { ExUserEffects } from './exUser.effects';
 import { ProjectEffects } from './project.effects';
+import {DashboardEffects} from './dashboard.effects';
 
 
 
@@ -27,6 +28,7 @@ import { ProjectEffects } from './project.effects';
       UserAuthEffects,
       MenuEffects,
       DepartmentEffects,
+      DashboardEffects,
       RoleEffects,
       DesignationEffects,
       UserEffects,
