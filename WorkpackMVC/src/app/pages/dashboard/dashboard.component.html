@@ -2,17 +2,17 @@
   <div class="portlet light portlet-fit bordered">
     <div class="portlet-title">
       <div class="caption">
-        <span class="caption-subject font-dark bold uppercase">Ongoing Projects</span>
+        <span class="caption-subject font-red sbold uppercase">Ongoing Projects</span>
       </div>
       <div class="actions">
         Test
       </div>
     </div>
     <div class="portlet-body">
-      <div class="table-scrollable">
-        <table class="table table-bordered table-hover">
+      <div class="table-scrollable table-scrollable-borderless">
+        <table class="table table-hover table-light">
           <thead>
-          <tr>
+          <tr class="uppercase">
             <th class="col-sm-1">Manage</th>
             <th class="col-sm-2">Project Name</th>
             <th class="col-sm-1">Project Code</th>
@@ -29,23 +29,23 @@
                   <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu">
-                  <li>
+                  <li *ngIf="dashBoardMenuListAccess && dashBoardMenuListAccess.liViewdetails">
                     <a href="javascript:void(0)">
                       <i class="fa fa-eye"></i> View Details </a>
                   </li>
-                  <li>
+                  <li *ngIf="dashBoardMenuListAccess && dashBoardMenuListAccess.liEditTask">
                     <a href="javascript:void(0)">
                       <i class="fa fa-edit"></i> Task List </a>
                   </li>
-                  <li>
+                  <li *ngIf="dashBoardMenuListAccess && dashBoardMenuListAccess.liEditMaterialTask">
                     <a href="javascript:void(0)">
                       <i class="fa fa-edit"></i> Material List </a>
                   </li>
-                  <li>
+                  <li *ngIf="dashBoardMenuListAccess && dashBoardMenuListAccess.liEditDocumentTask">
                     <a href="javascript:void(0)">
                       <i class="fa fa-edit"></i> Document List </a>
                   </li>
-                  <li>
+                  <li *ngIf="dashBoardMenuListAccess && dashBoardMenuListAccess.liSchedule">
                     <a href="javascript:void(0)">
                       <i class="fa fa-calendar"></i> Schedule </a>
                   </li>

@@ -24,6 +24,7 @@ export interface AppState {
   department: fromDepartmentReducer.State;
   designation: fromDesignationReducer.State;
   dashboard: fromDashboardReducer.State;
+  dashboardMenuList: fromDashboardReducer.State;
   project: fromProjectReducer.State;
   projectType: fromProjectTypeReducer.State;
   projectStatus: fromProjectStatusReducer.State;
@@ -41,6 +42,7 @@ const reducers = {
   department: fromDepartmentReducer.reducer,
   designation: fromDesignationReducer.reducer,
   dashboard: fromDashboardReducer.reducer,
+  dashboardMenuList: fromDashboardReducer.reducer,
   project: fromProjectReducer.reducer,
   projectType: fromProjectTypeReducer.reducer,
   projectStatus: fromProjectStatusReducer.reducer,
@@ -131,6 +133,14 @@ export function getDashboardState(state: AppState): fromDashboardReducer.State {
 }
 
 export const getDashboard = compose(fromDashboardReducer.getDashboard, getDashboardState);
+
+// =============== Dashboard Menu List states and compose methods ===============================================
+
+export function getDashboardMenuListState(state: AppState): fromDashboardReducer.State {
+  return state && state.dashboardMenuList;
+}
+
+export const getDashboardMenuList = compose(fromDashboardReducer.getDashboardMenuList, getDashboardMenuListState);
 
 
 // =============== Client states and compose methods ===================================================

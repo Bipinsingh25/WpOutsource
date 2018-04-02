@@ -33,4 +33,15 @@ export class DashboardEffects {
     .map((data) => {
       return new DashboardActions.GetDashboardSuccessAction(data);
     });
+
+  @Effect()
+  get_dashboard_menu_list$: Observable<Action> = this.actions$
+    .ofType(DashboardActions.ActionTypes.GET_MENU_LIST)
+    .switchMap((action: Action) => {
+      return this.dashboardService.getMenuList();
+    })
+    .filter(data => data !== null)
+    .map((data) => {
+      return new DashboardActions.GetDashboardMenuListSuccessAction(data['lstDict'][0]);
+    });
 }
