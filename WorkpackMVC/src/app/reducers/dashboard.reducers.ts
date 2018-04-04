@@ -21,15 +21,16 @@ const initialState = {
     ProjectStageID: null,
     StageName: '',
     ProjectLeader: '',
+    RoadmapData: []
   }],
   dashboardMenuList: {
-    "liViewdetails": false,
-    "liEditTask": false,
-    "liEditMaterialTask": false,
-    "liEditDocumentTask": false,
-    "liSchedule": false,
-    "liprojectcration": false,
-    "limanageusers": false
+    liViewdetails: false,
+    liEditTask: false,
+    liEditMaterialTask: false,
+    liEditDocumentTask: false,
+    liSchedule: false,
+    liprojectcration: false,
+    limanageusers: false
   }
 };
 

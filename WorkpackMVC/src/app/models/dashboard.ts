@@ -10,6 +10,7 @@ export class Dashboard {
   ProjectStageID: Number;
   StageName: String;
   ProjectLeader: String;
+  RoadmapData: any[];
 
   constructor() {
     this.ProjectID = null;
@@ -23,5 +24,6 @@ export class Dashboard {
     this.ProjectStageID = null;
     this.StageName = '';
     this.ProjectLeader = '';
+    this.RoadmapData = [];
   }
 }

@@ -1,0 +1,41 @@
+
+.dashboard-table-body {
+  overflow: auto;
+  display: block;
+  max-height: 550px;
+}
+
+.fixed-header {
+  display: table;
+}
+
+.dashboard-heading {
+  padding-left: 0;
+}
+
+.previous-page {
+  display: block;
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  z-index: 3;
+  transform: translate(-1000px, 0);
+}
+
+.current-page {
+  display: block;
+  position: absolute;
+  left: 0;
+  opacity: 1;
+  z-index: 4;
+  transform: translate(0, 0);
+}
+
+.next-page {
+  display: block;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  z-index: 3;
+  transform: translate(1000px, 0);
+}

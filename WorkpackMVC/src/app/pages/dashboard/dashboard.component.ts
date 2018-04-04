@@ -10,6 +10,7 @@ import {
 import {BlockUI, NgBlockUI} from 'ng-block-ui';
 import * as _ from 'lodash';
 import {DashboardManage} from '../../models/dashboardManage';
+import {DashboardService} from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,8 +24,11 @@ export class DashboardComponent implements OnInit {
   dashBoardMenuListAccess: any;
   @BlockUI('blockUI-list') blockUI: NgBlockUI;
   datastore: any[];
+  left: number;
+  lineScale: any;
 
-  constructor(private store: Store<fromRoot.AppState>) {
+  constructor(private store: Store<fromRoot.AppState>, private dashboardService: DashboardService) {
+    this.left = 0;
     this.dashboardList$ = this.store.select(fromRoot.getDashboard);
     this.dashboardMenuList$ = this.store.select(fromRoot.getDashboardMenuList);
     this.blockUI.start('Loading...');
@@ -38,10 +42,12 @@ export class DashboardComponent implements OnInit {
       .do(() => this.blockUI.start('Loading...'))
       .subscribe(
         data => {
-          debugger;
           if (data !== null) {
             this.dashBoardGridData = _.clone(data);
             this.blockUI.stop();
+            this.dashBoardGridData.forEach((gridData) => {
+              gridData.currentPage = 0;
+            });
           }
         }, err => {
           console.log('Error in retrieving data');
@@ -61,6 +67,57 @@ export class DashboardComponent implements OnInit {
           console.log('Error in retrieving data');
         }
       );
+  }
+
+  previousPage(dashBoardGridData) {
+    if (this.dashBoardGridData[dashBoardGridData].currentPage > 0) {
+      this.dashBoardGridData[dashBoardGridData].currentPage = this.dashBoardGridData[dashBoardGridData].currentPage - 1;
+    }
+  }
+
+  nextPage(dashBoardGridData, roadmapData) {
+    if (this.dashBoardGridData[dashBoardGridData].currentPage < roadmapData - 1) {
+      this.dashBoardGridData[dashBoardGridData].currentPage = this.dashBoardGridData[dashBoardGridData].currentPage + 1;
+    }
+  }
+
+  hideNextPage(dashBoardGridData, roadmapData) {
+    return ((this.dashBoardGridData[dashBoardGridData].currentPage + 1) >= roadmapData);
+  }
+
+  circleSpacing(roadMapDataIndex) {
+    this.left = (roadMapDataIndex > 1) ? this.left + 3 : 0;
+    // this.left = this.left + 3;
+    return {
+      'left': this.left + '%',
+    };
+  }
+
+  lineColoring(dashBoardGridDataIndex) {
+    let lineScale = 0;
+    this.lineScale = {};
+    this.dashBoardGridData[dashBoardGridDataIndex].RoadmapData.forEach((roadMapData, roadMapDataIndex) => {
+      if (roadMapData.ActualEndDate) {
+        lineScale = (roadMapDataIndex-1) * 0.03;
+        this.lineScale = {
+          'transform': 'scaleX(' + lineScale + ')'
+        };
+      }
+    });
+  }
+
+  initializeLeft() {
+    this.left = 0;
+  }
+
+  getMilestones(projectId, milestoneData, index) {
+    milestoneData = [];
+    this.dashboardService.getMilestonesByProjectId(projectId).subscribe(data => {
+      milestoneData = (data) ? _.clone(data) : [];
+      // this.dashBoardGridData[index].milestoneData.push({milestoneData: milestoneData});
+      return milestoneData;
+    }, err => {
+    })
   }
 
 }

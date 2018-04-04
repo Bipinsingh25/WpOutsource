@@ -11,17 +11,18 @@
     <div class="portlet-body">
       <div class="table-scrollable table-scrollable-borderless">
         <table class="table table-hover table-light">
-          <thead>
+          <thead class="fixed-header">
           <tr class="uppercase">
-            <th class="col-sm-1">Manage</th>
-            <th class="col-sm-2">Project Name</th>
-            <th class="col-sm-1">Project Code</th>
-            <th class="col-sm-2">Project Manager</th>
-            <th class="col-sm-6">Progress Roadmap</th>
+            <th class="col-sm-1 dashboard-heading">Manage</th>
+            <th class="col-sm-2 dashboard-heading">Project Name</th>
+            <th class="col-sm-1 dashboard-heading">Project Code</th>
+            <th class="col-sm-2 dashboard-heading">Project Manager</th>
+            <th class="col-sm-6 dashboard-heading">Progress Roadmap</th>
           </tr>
           </thead>
-          <tbody>
-          <tr *ngFor="let gridData of dashBoardGridData; let i=index">
+          <tbody class="dashboard-table-body">
+          <tr *ngFor="let gridData of dashBoardGridData; let dashBoardGridDataIndex=index;"
+              [ngStyle]="initializeLeft()">
             <td class="col-sm-1">
               <div class="btn-group">
                 <a class="btn btn-sm default" href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
@@ -55,7 +56,64 @@
             <td class="col-sm-2">{{gridData.ProjectName}}</td>
             <td class="col-sm-1">{{gridData.ProjectCode}}</td>
             <td class="col-sm-2">{{gridData.ProjectLeader}}</td>
-            <td class="col-sm-6">Yet to come</td>
+            <td class="col-sm-6" *ngIf="gridData.RoadmapData && (gridData.RoadmapData.length == 0)">Project Roadmap not
+              defined.
+            </td>
+            <td class="col-sm-6" *ngIf="gridData.RoadmapData && (gridData.RoadmapData.length > 0)">
+              <div class="cd-horizontal-timeline mt-timeline-horizontal loaded">
+                <div class="timeline">
+                  <div class="events-wrapper">
+                    <div class="events" style="width: 1800px; margin: 0 6px 0 6px;">
+                      <ol [ngStyle]="lineColoring(dashBoardGridDataIndex)">
+                        <li
+                          [ngClass]="{
+                            'active': !roadMapDataIndex,
+                            'previous-page': gridData.currentPage === roadMapDataIndex + 1,
+                            'current-page': gridData.currentPage === roadMapDataIndex,
+                            'next-page': gridData.currentPage === roadMapDataIndex - 1
+                         }"
+                          *ngFor="let roadmapData of gridData.RoadmapData;let roadMapDataIndex = index;">
+                          <span *ngIf="(roadMapDataIndex % 1 == 0)">
+                            <span *ngIf="roadMapDataIndex == 0">
+                              <a href="javascript:void(0);"
+                                 [ngClass]="(roadmapData.DummyText == 'G')?'border-after-green bg-after-green':(roadmapData.DummyText == 'R')?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red'"
+                                 style="margin-left: 6px;left:0;"
+                                 [attr.title]="roadmapData.TaskName"></a>
+                            </span>
+                            <span *ngIf="roadMapDataIndex > 0">
+                              <a href="javascript:void(0);"
+                                 [ngClass]="(roadmapData.ActualEndDate)?'border-after-green bg-after-green':(roadmapData.Delay <= 0)?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red'"
+                                 [ngStyle]="circleSpacing(roadMapDataIndex)"
+                                 [attr.title]="roadmapData.TaskName"></a>
+                            </span>
+                          </span>
+                        </li>
+                      </ol>
+                      <span class="filling-line bg-green" aria-hidden="true" [ngStyle]="this.lineScale"></span>
+                    </div>
+                    <!-- .events -->
+                  </div>
+                  <!-- .events-wrapper -->
+                  <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                    <li (click)="previousPage(dashBoardGridDataIndex)"
+                        [hidden]="gridData.currentPage == 0">
+                      <a href="javascript:void(0);" class="prev btn btn-outline red md-skip">
+                        <i class="fa fa-chevron-left"></i>
+                      </a>
+                    </li>
+                    <li (click)="nextPage(dashBoardGridDataIndex, gridData.RoadmapData.length)"
+                        [hidden]="hideNextPage(dashBoardGridDataIndex, gridData.RoadmapData.length)">
+                      <a href="javascript:void(0);" class="next btn btn-outline red md-skip">
+                        <i class="fa fa-chevron-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                  <!-- .cd-timeline-navigation -->
+                </div>
+                <!-- .timeline -->
+                <!-- .events-content -->
+              </div>
+            </td>
           </tr>
           </tbody>
         </table>
