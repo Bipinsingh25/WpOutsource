@@ -33,6 +33,7 @@ import {DashboardService} from './dashboard.service';
     ProjectService,
     ProjectTemplateService,
     ExUserService
+
   ]
 })
 export class ServiceModule {

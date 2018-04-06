@@ -24,4 +24,10 @@ export class DashboardService {
       .map((res: Response) => res)
       .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
   }
+
+  public getMilestoneData(projectId: number, taskId: number, taskTypeId: number): Observable<any> {
+    return this.httpClient.get('/api/Dashboard/GetPrediccessorTask?ProjectID=' + projectId + '&TaskID=' + taskId + '&TaskTypeId=' + taskTypeId)
+      .map((res: Response) => res)
+      .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
+  }
 }

@@ -63,7 +63,8 @@
               <div class="cd-horizontal-timeline mt-timeline-horizontal loaded">
                 <div class="timeline">
                   <div class="events-wrapper">
-                    <div class="events" style="width: 1800px; margin: 0 6px 0 6px;">
+                    <div class="events" style="width: 1800px; margin: 0 6px 0 6px;transform: translateX(0px);"
+                         [ngStyle]="lineMoment">
                       <ol [ngStyle]="lineColoring(dashBoardGridDataIndex)">
                         <li
                           [ngClass]="{
@@ -74,36 +75,28 @@
                          }"
                           *ngFor="let roadmapData of gridData.RoadmapData;let roadMapDataIndex = index;">
                           <span *ngIf="(roadMapDataIndex % 1 == 0)">
-                            <span *ngIf="roadMapDataIndex == 0">
-                              <a href="javascript:void(0);"
-                                 [ngClass]="(roadmapData.DummyText == 'G')?'border-after-green bg-after-green':(roadmapData.DummyText == 'R')?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red'"
-                                 style="margin-left: 6px;left:0;"
-                                 [attr.title]="roadmapData.TaskName"></a>
-                            </span>
-                            <span *ngIf="roadMapDataIndex > 0">
-                              <a href="javascript:void(0);"
-                                 [ngClass]="(roadmapData.ActualEndDate)?'border-after-green bg-after-green':(roadmapData.Delay <= 0)?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red'"
+                              <a data-toggle="modal" href="#myModal"
+                                 (click)="getMilestoneData(roadmapData.ProjectID, roadmapData.ProjectTaskID, roadmapData.TaskTypeID,roadmapData.StartDate,gridData.ProjectName,roadmapData.TaskName)"
+                                 [ngClass]="(roadMapDataIndex == 0)?(roadmapData.DummyText == 'G')?'border-after-green bg-after-green':(roadmapData.DummyText == 'R')?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red':
+                                 (roadmapData.ActualEndDate)?'border-after-green bg-after-green':(roadmapData.Delay <= 0)?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red'"
                                  [ngStyle]="circleSpacing(roadMapDataIndex)"
                                  [attr.title]="roadmapData.TaskName"></a>
-                            </span>
                           </span>
                         </li>
                       </ol>
                       <span class="filling-line bg-green" aria-hidden="true" [ngStyle]="this.lineScale"></span>
                     </div>
-                    <!-- .events -->
                   </div>
-                  <!-- .events-wrapper -->
                   <ul class="cd-timeline-navigation mt-ht-nav-icon">
-                    <li (click)="previousPage(dashBoardGridDataIndex)"
-                        [hidden]="gridData.currentPage == 0">
-                      <a href="javascript:void(0);" class="prev btn btn-outline red md-skip">
+                    <li (click)="previousPage(dashBoardGridDataIndex)">
+                      <a href="javascript:void(0);" class="prev btn btn-outline red md-skip"
+                         [attr.disabled]="gridData.currentPage == 0?true:null">
                         <i class="fa fa-chevron-left"></i>
                       </a>
                     </li>
-                    <li (click)="nextPage(dashBoardGridDataIndex, gridData.RoadmapData.length)"
-                        [hidden]="hideNextPage(dashBoardGridDataIndex, gridData.RoadmapData.length)">
-                      <a href="javascript:void(0);" class="next btn btn-outline red md-skip">
+                    <li (click)="nextPage(dashBoardGridDataIndex, gridData.RoadmapData.length)">
+                      <a href="javascript:void(0);" class="next btn btn-outline red md-skip"
+                         [attr.disabled]="((gridData.currentPage + 1) >= gridData.RoadmapData.length)?true:null">
                         <i class="fa fa-chevron-right"></i>
                       </a>
                     </li>
@@ -121,4 +114,28 @@
     </div>
   </div>
 </div>
+<!-- Modal -->
+<div class="modal fade draggable-modal ui-draggable in ui-draggable-dragging" id="myModal" role="basic"
+     aria-hidden="true">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header ui-draggable-handle" draggable="true">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><strong>Milestone Details for "{{modalTaskName}}" in "{{modalProjectName}}"</strong>
+        </h4>
+      </div>
+      <div class="modal-body">
+        Planned : {{modalPlannedDate}}
+        <br>
+        <strong>Checklist for {{modalTaskName}}</strong>
+        <div [innerHTML]="vStr | safeHtml"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

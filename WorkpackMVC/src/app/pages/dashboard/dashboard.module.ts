@@ -6,6 +6,7 @@ import {routes} from './dashboard.routes';
 import {HotTableModule} from 'angular-handsontable';
 import {BlockUIModule} from 'ng-block-ui';
 import {DashboardComponent} from './dashboard.component';
+import {SafeHtmlPipe} from '../../pipes/safe-html';
 
 
 const components = [];
@@ -21,7 +22,8 @@ const components = [];
   ],
   declarations: [
     ...components,
-    DashboardComponent
+    DashboardComponent,
+    SafeHtmlPipe
   ],
   exports: [
     ...components,

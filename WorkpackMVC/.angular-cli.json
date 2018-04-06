@@ -34,10 +34,13 @@
         "assets/global/plugins/datatables/datatables.min.css",
         "assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css",
         "../node_modules/angular2-toaster/toaster.css",
-        "../node_modules/handsontable/dist/handsontable.full.css"
+        "../node_modules/handsontable/dist/handsontable.full.css",
+        "assets/global/plugins/jstree/dist/themes/default/style.css"
+
       ],
       "scripts": [
         "assets/global/plugins/jquery.min.js",
+        "assets/global/plugins/jstree/dist/jstree.js",
         "assets/global/plugins/bootstrap/js/bootstrap.min.js",
         "assets/global/plugins/js.cookie.min.js",
         "assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js",

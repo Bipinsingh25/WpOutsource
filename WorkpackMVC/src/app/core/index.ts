@@ -9,7 +9,6 @@ export function httpInterceptor(
 ) {
     return new HttpService(null);
 }
-
 @NgModule({
     declarations: [
     ],
