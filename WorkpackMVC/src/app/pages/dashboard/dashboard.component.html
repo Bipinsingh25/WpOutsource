@@ -1,12 +1,17 @@
 <div *ngIf="dashBoardGridData">
   <div class="portlet light portlet-fit bordered">
     <div class="portlet-title">
-      <div class="caption">
-        <span class="caption-subject font-red sbold uppercase">Ongoing Projects</span>
+      <div class="row">
+        <div class="caption col-sm-3">
+          <span class="caption-subject font-red sbold uppercase">Ongoing Projects</span>
+        </div>
+        <div class="actions col-sm-9" style="text-align: right;">
+          <span><i class="fa fa-circle" style="color: #32c5d2"></i> &nbsp;Completed</span>
+          <span style="margin-left: 5px;"><i class="fa fa-circle" style="color: #c49f47"></i> &nbsp;Pending, not delayed	</span>
+          <span style="margin-left: 5px;"><i class="fa fa-circle" style="color: #e7505a;"></i> &nbsp;Pending & delayed</span>
+        </div>
       </div>
-      <div class="actions">
-        Test
-      </div>
+
     </div>
     <div class="portlet-body">
       <div class="table-scrollable table-scrollable-borderless">
@@ -22,7 +27,7 @@
           </thead>
           <tbody class="dashboard-table-body">
           <tr *ngFor="let gridData of dashBoardGridData; let dashBoardGridDataIndex=index;"
-              [ngStyle]="initializeLeft()">
+              [ngStyle]="initializeLeft(dashBoardGridDataIndex)">
             <td class="col-sm-1">
               <div class="btn-group">
                 <a class="btn btn-sm default" href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false">
@@ -60,11 +65,11 @@
               defined.
             </td>
             <td class="col-sm-6" *ngIf="gridData.RoadmapData && (gridData.RoadmapData.length > 0)">
-              <div class="cd-horizontal-timeline mt-timeline-horizontal loaded">
+              <!--<div class="cd-horizontal-timeline mt-timeline-horizontal loaded">
                 <div class="timeline">
                   <div class="events-wrapper">
-                    <div class="events" style="width: 1800px; margin: 0 6px 0 6px;transform: translateX(0px);"
-                         [ngStyle]="lineMoment">
+                    <div class="events" style="width: 1800px; margin: 0 6px 0 6px;"
+                         [ngStyle]="lineMomentTransformX()">
                       <ol [ngStyle]="lineColoring(dashBoardGridDataIndex)">
                         <li
                           [ngClass]="{
@@ -80,7 +85,7 @@
                                  [ngClass]="(roadMapDataIndex == 0)?(roadmapData.DummyText == 'G')?'border-after-green bg-after-green':(roadmapData.DummyText == 'R')?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red':
                                  (roadmapData.ActualEndDate)?'border-after-green bg-after-green':(roadmapData.Delay <= 0)?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red'"
                                  [ngStyle]="circleSpacing(roadMapDataIndex)"
-                                 [attr.title]="roadmapData.TaskName"></a>
+                                 [attr.title]="roadmapData.TaskName">{{roadmapData.TaskName}}</a>
                           </span>
                         </li>
                       </ol>
@@ -101,10 +106,46 @@
                       </a>
                     </li>
                   </ul>
+                  &lt;!&ndash; .cd-timeline-navigation &ndash;&gt;
+                </div>
+                &lt;!&ndash; .timeline &ndash;&gt;
+                &lt;!&ndash; .events-content &ndash;&gt;
+              </div>-->
+              <div class="cd-horizontal-timeline mt-timeline-horizontal loaded" data-spacing="60">
+                <div class="timeline">
+                  <div class="events-wrapper">
+                    <div class="events" style="width: 1800px;"
+                         [ngStyle]="{'transform': 'translateX(' + gridData.lineMomentTransform + 'px)'}">
+                      <ol [ngStyle]="lineColoring(dashBoardGridDataIndex)">
+                        <li *ngFor="let roadmapData of gridData.RoadmapData;let roadMapDataIndex = index;">
+                          <a data-date="roadmapData.TaskName" data-toggle="modal" href="#myModal"
+                             (click)="getMilestoneData(roadmapData.ProjectID, roadmapData.ProjectTaskID, roadmapData.TaskTypeID,roadmapData.StartDate,gridData.ProjectName,roadmapData.TaskName)"
+                             [ngClass]="(roadMapDataIndex == 0)?(roadmapData.DummyText == 'G')?'border-after-green bg-after-green':(roadmapData.DummyText == 'R')?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red':
+                                 (roadmapData.ActualEndDate)?'border-after-green bg-after-green':(roadmapData.Delay <= 0)?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red'"
+                             [ngStyle]="circleSpacing(dashBoardGridDataIndex,roadMapDataIndex)" [attr.ttile]="roadmapData.TaskName">{{roadmapData.TaskName}}</a>
+                        </li>
+                      </ol>
+                      <span class="filling-line bg-green" aria-hidden="true" [ngStyle]="this.lineScale"></span>
+                    </div>
+                    <!-- .events -->
+                  </div>
+                  <!-- .events-wrapper -->
+                  <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                    <li>
+                      <a href="javascript:void(0)" class="prev btn btn-outline red md-skip active"
+                         (click)="previousPage(dashBoardGridDataIndex)">
+                        <i class="fa fa-chevron-left"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)" class="next btn btn-outline red md-skip"
+                         (click)="nextPage(dashBoardGridDataIndex,gridData.RoadmapData.length)">
+                        <i class="fa fa-chevron-right"></i>
+                      </a>
+                    </li>
+                  </ul>
                   <!-- .cd-timeline-navigation -->
                 </div>
-                <!-- .timeline -->
-                <!-- .events-content -->
               </div>
             </td>
           </tr>

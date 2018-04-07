@@ -25,6 +25,7 @@ export class DashboardComponent implements OnInit {
   @BlockUI('blockUI-list') blockUI: NgBlockUI;
   datastore: any[];
   left: number;
+  lefTotal: number;
   lineScale: any;
   lineMoment: any;
   lineMomentTransform: any;
@@ -35,8 +36,11 @@ export class DashboardComponent implements OnInit {
   vStr: string;
 
   constructor(private store: Store<fromRoot.AppState>, private dashboardService: DashboardService) {
-    this.left = 1;
+    this.left = 0;
+    this.lefTotal = 1800;
+    this.lineMomentTransform = 0;
     this.vStr = "";
+    this.lineMoment = "";
     this.milestoneData = [];
     this.dashboardList$ = this.store.select(fromRoot.getDashboard);
     this.dashboardMenuList$ = this.store.select(fromRoot.getDashboardMenuList);
@@ -56,7 +60,8 @@ export class DashboardComponent implements OnInit {
             this.blockUI.stop();
             console.log('this.dashBoardGridData', this.dashBoardGridData);
             this.dashBoardGridData.forEach((gridData) => {
-              gridData.currentPage = 0;
+              gridData.lineMomentTransform = 0;
+              gridData.left = 0;
             });
           }
         }, err => {
@@ -80,33 +85,23 @@ export class DashboardComponent implements OnInit {
   }
 
   previousPage(dashBoardGridData) {
-    if (this.dashBoardGridData[dashBoardGridData].currentPage > 0) {
-      this.dashBoardGridData[dashBoardGridData].currentPage = this.dashBoardGridData[dashBoardGridData].currentPage - 1;
-      this.lineMomentTransform = (this.lineMomentTransform + 330);
-      this.lineMoment = {
-        'transform': 'translateX(' + this.lineMomentTransform + 'px)'
-      };
-    }
+    this.dashBoardGridData[dashBoardGridData].lineMomentTransform = (this.dashBoardGridData[dashBoardGridData].lineMomentTransform < 0) ? (this.dashBoardGridData[dashBoardGridData].lineMomentTransform + 330) : this.dashBoardGridData[dashBoardGridData].lineMomentTransform;
+
   }
+
 
   nextPage(dashBoardGridData, roadmapData) {
-    if (this.dashBoardGridData[dashBoardGridData].currentPage < roadmapData - 1) {
-      this.dashBoardGridData[dashBoardGridData].currentPage = this.dashBoardGridData[dashBoardGridData].currentPage + 1;
-      this.lineMomentTransform = (this.lineMomentTransform - 330);
-      this.lineMoment = {
-        'transform': 'translateX(' + this.lineMomentTransform + 'px)'
-      };
-    }
+    this.dashBoardGridData[dashBoardGridData].lineMomentTransform = ((this.dashBoardGridData[dashBoardGridData].lineMomentTransform * -1) < (((roadmapData < 10)?(roadmapData - 2):(roadmapData - 3)) * 150)) ? (this.dashBoardGridData[dashBoardGridData].lineMomentTransform - 330) : this.dashBoardGridData[dashBoardGridData].lineMomentTransform;
   }
 
-  circleSpacing(roadMapDataIndex) {
+  circleSpacing(dashBoardGridDataIndex, roadMapDataIndex) {
     if (roadMapDataIndex == 0) {
-      return;
+      return {'color': '#8896a0'};
     }
-    this.left = (roadMapDataIndex > 1) ? this.left + 3 : 1;
-    // this.left = this.left + 3;
+    this.dashBoardGridData[dashBoardGridDataIndex].left = this.dashBoardGridData[dashBoardGridDataIndex].left + 150;
     return {
-      'left': this.left + '%',
+      'color': '#8896a0',
+      'left': this.dashBoardGridData[dashBoardGridDataIndex].left + 'px',
     };
   }
 
@@ -115,7 +110,9 @@ export class DashboardComponent implements OnInit {
     this.lineScale = {};
     this.dashBoardGridData[dashBoardGridDataIndex].RoadmapData.forEach((roadMapData, roadMapDataIndex) => {
       if (roadMapData.ActualEndDate) {
-        lineScale = ((roadMapDataIndex - 1) * 0.03) + 0.01;
+        // lineScale = ((roadMapDataIndex - 1) * 0.03) + 0.01;
+        //(this.dashBoardGridData[dashBoardGridDataIndex].RoadmapData.length < 6) ? (roadMapDataIndex + 1) :
+        lineScale = (((roadMapDataIndex+1)) * 0.07);
         this.lineScale = {
           'transform': 'scaleX(' + lineScale + ')'
         };
@@ -123,8 +120,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  initializeLeft() {
-    this.left = 1;
+  initializeLeft(index) {
+    this.dashBoardGridData[index].left = 0;
   }
 
   getMilestoneData(projectId, taskId, taskTypeId, plannedDate, projectName, taskName) {
