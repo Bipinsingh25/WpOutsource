@@ -7,6 +7,7 @@ import {HotTableModule} from 'angular-handsontable';
 import {BlockUIModule} from 'ng-block-ui';
 import {SafeHtmlPipe} from '../../pipes/safe-html';
 import {ActivityLogComponent} from './activity-log.component';
+import {FilterPipe} from '../../pipes/filter.pipe';
 
 
 const components = [];
@@ -23,7 +24,8 @@ const components = [];
   declarations: [
     ...components,
     ActivityLogComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    FilterPipe
   ],
   exports: [
     ...components,

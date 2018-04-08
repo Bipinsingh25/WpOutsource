@@ -1,3 +1,51 @@
-<p>
-  activity-log works!
-</p>
+<div>
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+        <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString">
+      </div>
+    </div>
+  </form>
+  <div class="portlet light portlet-fit bordered">
+    <div class="portlet-title">
+      <div class="row">
+        <div class="caption col-sm-3">
+          <span class="caption-subject font-red sbold uppercase">Activity Log</span>
+        </div>
+        <div class="actions col-sm-9" style="text-align: right;">
+          <button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i> &nbsp;Export
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="portlet-body">
+      <div class="table-scrollable table-scrollable-borderless">
+        <table class="table table-hover table-light">
+          <thead class="fixed-header">
+          <tr class="uppercase">
+            <th class="col-sm-3 dashboard-heading">File</th>
+            <th class="col-sm-1 dashboard-heading">Rev</th>
+            <th class="col-sm-1 dashboard-heading">Stage</th>
+            <th class="col-sm-3 dashboard-heading">Action</th>
+            <th class="col-sm-2 dashboard-heading">Action By</th>
+            <th class="col-sm-2 dashboard-heading">Action Date & Time</th>
+          </tr>
+          </thead>
+          <tbody class="dashboard-table-body">
+          <!--| filter : 'FileName' : searchString; -->
+          <tr *ngFor="let log of activityLog; let activityLogIndex=index;">
+            <td class="col-sm-3">{{log.FileName}}</td>
+            <td class="col-sm-1">{{log.RevNumber}}</td>
+            <td class="col-sm-1">{{log.RevName}}</td>
+            <td class="col-sm-3">{{log.Action}}</td>
+            <td class="col-sm-2">{{log.ActionBy}}</td>
+            <td class="col-sm-2">{{log.ActionDate}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

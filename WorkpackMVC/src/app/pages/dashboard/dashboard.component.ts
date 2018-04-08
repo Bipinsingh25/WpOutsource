@@ -24,11 +24,8 @@ export class DashboardComponent implements OnInit {
   dashBoardMenuListAccess: any;
   @BlockUI('blockUI-list') blockUI: NgBlockUI;
   datastore: any[];
-  left: number;
   lefTotal: number;
   lineScale: any;
-  lineMoment: any;
-  lineMomentTransform: any;
   milestoneData: any[];
   modalPlannedDate: any;
   modalProjectName: string;
@@ -36,11 +33,8 @@ export class DashboardComponent implements OnInit {
   vStr: string;
 
   constructor(private store: Store<fromRoot.AppState>, private dashboardService: DashboardService) {
-    this.left = 0;
     this.lefTotal = 1800;
-    this.lineMomentTransform = 0;
     this.vStr = "";
-    this.lineMoment = "";
     this.milestoneData = [];
     this.dashboardList$ = this.store.select(fromRoot.getDashboard);
     this.dashboardMenuList$ = this.store.select(fromRoot.getDashboardMenuList);

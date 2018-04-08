@@ -14,6 +14,7 @@ import {ProjectService} from "./project.service";
 import {ProjectTemplateService} from "./projectTemplate.service";
 import {ExUserService} from './exUser.service';
 import {DashboardService} from './dashboard.service';
+import {ActivityLogService} from './activity-log.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {DashboardService} from './dashboard.service';
     ClientService,
     ProjectService,
     ProjectTemplateService,
-    ExUserService
+    ExUserService,
+    ActivityLogService
 
   ]
 })
