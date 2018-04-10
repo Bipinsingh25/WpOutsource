@@ -3,7 +3,7 @@ import {Actions, Effect} from "@ngrx/effects";
 import {Store} from "@ngrx/store";
 import * as fromRoot from '../reducers';
 import {Observable} from "rxjs/Observable";
-import * as DashboardActions from './../actions/dashboard.actions';
+import * as ToDoListActions from './../actions/toDoList.actions';
 // adding rx operators
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
@@ -14,34 +14,24 @@ import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
 import {DashboardService} from '../services/dashboard.service';
 import {Action} from '../reducers/action.interface';
+import {ToDoListService} from '../services/to-do-list.service';
 
 @Injectable()
-export class DashboardEffects {
+export class ToDoListEffects {
 
   constructor(private actions$: Actions,
-              private dashboardService: DashboardService,
+              private toDoListService: ToDoListService,
               private store: Store<fromRoot.AppState>) {
   }
 
   @Effect()
   get_dashboard$: Observable<Action> = this.actions$
-    .ofType(DashboardActions.ActionTypes.GET_DASHBOARD_PROJECTS)
+    .ofType(ToDoListActions.ActionTypes.GET_TO_DO_LIST)
     .switchMap((action: Action) => {
-      return this.dashboardService.list();
+      return this.toDoListService.getToDoList();
     })
     .filter(data => data !== null)
     .map((data) => {
-      return new DashboardActions.GetDashboardSuccessAction(data);
-    });
-
-  @Effect()
-  get_dashboard_menu_list$: Observable<Action> = this.actions$
-    .ofType(DashboardActions.ActionTypes.GET_MENU_LIST)
-    .switchMap((action: Action) => {
-      return this.dashboardService.getMenuList();
-    })
-    .filter(data => data !== null)
-    .map((data) => {
-      return new DashboardActions.GetDashboardMenuListSuccessAction(data['lstDict'][0]);
+      return new ToDoListActions.GetToDoListSuccessAction(data);
     });
 }

@@ -176,6 +176,20 @@ export class SidebarService {
         'MenuVisible': 0,
         'OrderMenuHeader': 0,
         'DisableManHours': 0
+      },
+      {
+        // tslint:disable-next-line:max-line-length
+        'ModuleID': 10,
+        'ModuleName': 'To Do List',
+        'routerLink': '/toDoList',
+        'ParentModuleID': 1,
+        'URL': '',
+        'AnchorClass': '',
+        'CountClass': '',
+        'SortOrder': '',
+        'MenuVisible': 0,
+        'OrderMenuHeader': 0,
+        'DisableManHours': 0
       }
     ];
 

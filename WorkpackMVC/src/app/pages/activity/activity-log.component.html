@@ -1,26 +1,43 @@
 <div>
-  <!--  <form>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-          <input type="text" class="form-control" name="searchString" placeholder="Type to search..." [(ngModel)]="searchString">
-        </div>
-      </div>
-    </form>-->
   <div class="portlet light portlet-fit bordered">
     <div class="portlet-title">
       <div class="row">
         <div class="caption col-sm-3">
           <span class="caption-subject font-red sbold uppercase">Activity Log</span>
         </div>
-        <!--<div class="actions col-sm-9" style="text-align: right;">
-          <button type="button" class="btn btn-primary"><i class="fa fa-download" aria-hidden="true"></i> &nbsp;Export
-          </button>
-        </div>-->
+        <div class="actions col-sm-9" style="text-align: right;">
+          <div class="dt-buttons pull-right">
+            <a class="dt-button buttons-print btn dark btn-outline" tabindex="0"
+               aria-controls="sample_1" href="javascript:void(0)"><span>Print</span></a>
+            <a class="dt-button buttons-copy buttons-html5 btn red btn-outline" tabindex="0" aria-controls="sample_1"
+               href="javascript:void(0)"><span>Copy</span></a>
+            <a class="dt-button buttons-pdf buttons-html5 btn green btn-outline"
+               tabindex="0" aria-controls="sample_1" href="javascript:void(0)"><span>PDF</span></a>
+            <a class="dt-button buttons-excel buttons-html5 btn yellow btn-outline" tabindex="0"
+               aria-controls="sample_1"
+               href="javascript:void(0)"><span>Excel</span></a>
+            <a class="dt-button buttons-csv buttons-html5 btn purple btn-outline"
+               tabindex="0" aria-controls="sample_1" href="javascript:void(0)"><span>CSV</span></a>
+            <a class="dt-button buttons-collection buttons-colvis btn dark btn-outline" tabindex="0"
+               aria-controls="sample_1" href="javascript:void(0)"><span>Columns</span></a>
+          </div>
+        </div>
       </div>
-
     </div>
+
     <div class="portlet-body">
+      <div class="row">
+        <div class="col-md-6 col-sm-12">
+        </div>
+        <div class="col-md-6 col-sm-12" style="text-align: right;">
+          <div id="sample_1_filter" class="dataTables_filter"><label>Search: <input type="search"
+                                                                                   class="form-control input-sm input-small input-inline"
+                                                                                   placeholder=""
+                                                                                   [(ngModel)]="searchString"
+                                                                                   aria-controls="sample_1"></label>
+          </div>
+        </div>
+      </div>
       <div class="table-scrollable table-scrollable-borderless">
         <table class="table table-hover table-light">
           <thead class="fixed-header">
@@ -28,20 +45,20 @@
             <th class="col-sm-3 dashboard-heading">File</th>
             <th class="col-sm-1 dashboard-heading">Rev</th>
             <th class="col-sm-1 dashboard-heading">Stage</th>
-            <th class="col-sm-3 dashboard-heading">Action</th>
+            <th class="col-sm-2 dashboard-heading">Action</th>
             <th class="col-sm-2 dashboard-heading">Action By</th>
-            <th class="col-sm-2 dashboard-heading">Action Date & Time</th>
+            <th class="col-sm-3 dashboard-heading">Action Date & Time</th>
           </tr>
           </thead>
           <tbody class="dashboard-table-body">
           <!--| filter : 'FileName' : searchString; -->
-          <tr *ngFor="let log of activityLog; let activityLogIndex=index;">
+          <tr *ngFor="let log of activityLog | filter: searchString; let activityLogIndex=index;">
             <td class="col-sm-3">{{log.FileName}}</td>
             <td class="col-sm-1">{{log.RevNumber}}</td>
             <td class="col-sm-1">{{log.RevName}}</td>
-            <td class="col-sm-3">{{log.Action}}</td>
+            <td class="col-sm-2">{{log.Action}}</td>
             <td class="col-sm-2">{{log.ActionBy}}</td>
-            <td class="col-sm-2">{{log.ActionDate}}</td>
+            <td class="col-sm-3">{{log.ActionDate}}</td>
           </tr>
           </tbody>
         </table>

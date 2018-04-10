@@ -6,6 +6,8 @@ import * as fromClientReducer from './client.reducers';
 import * as fromDepartmentReducer from './department.reducers';
 import * as fromDesignationReducer from './designation.reducers';
 import * as fromDashboardReducer from './dashboard.reducers';
+import * as fromToDoListReducer from './toDoList.reducers';
+import * as fromActivityLogReducer from './activity.log.reducers';
 import * as fromProjectReducer from './project.reducers';
 import * as fromProjectTypeReducer from './projectType.reducers';
 import * as fromProjectStatusReducer from './projectStatus.reducers';
@@ -25,6 +27,8 @@ export interface AppState {
   designation: fromDesignationReducer.State;
   dashboard: fromDashboardReducer.State;
   dashboardMenuList: fromDashboardReducer.State;
+  toDoList: fromToDoListReducer.State;
+  activityLogProjectList: fromActivityLogReducer.State;
   project: fromProjectReducer.State;
   projectType: fromProjectTypeReducer.State;
   projectStatus: fromProjectStatusReducer.State;
@@ -43,6 +47,8 @@ const reducers = {
   designation: fromDesignationReducer.reducer,
   dashboard: fromDashboardReducer.reducer,
   dashboardMenuList: fromDashboardReducer.reducer,
+  toDoList:fromToDoListReducer.reducer,
+  activityLogProjectList: fromActivityLogReducer.reducer,
   project: fromProjectReducer.reducer,
   projectType: fromProjectTypeReducer.reducer,
   projectStatus: fromProjectStatusReducer.reducer,
@@ -125,6 +131,15 @@ export function getDesignationState(state: AppState): fromDesignationReducer.Sta
 
 export const getDesignation = compose(fromDesignationReducer.getDesignation, getDesignationState);
 
+// =============== To Do List states and compose methods ===============================================
+
+export function getToDoListState(state: AppState): fromToDoListReducer.State {
+  return state && state.toDoList;
+}
+
+export const getToDoList = compose(fromToDoListReducer.getToDoList, getToDoListState);
+
+
 
 // =============== Dashboard states and compose methods ===============================================
 
@@ -141,6 +156,14 @@ export function getDashboardMenuListState(state: AppState): fromDashboardReducer
 }
 
 export const getDashboardMenuList = compose(fromDashboardReducer.getDashboardMenuList, getDashboardMenuListState);
+
+// =============== Activity Log List of Project states and compose methods ===============================================
+
+export function getActivityLogProjectsState(state: AppState): fromActivityLogReducer.State {
+  return state && state.activityLogProjectList;
+}
+
+export const getActivityLogProjects = compose(fromActivityLogReducer.getActivityLogProjects, getActivityLogProjectsState);
 
 
 // =============== Client states and compose methods ===================================================

@@ -2,11 +2,11 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {routes} from './activity.log.routes';
+import {routes} from './to-do-list.routes';
 import {HotTableModule} from 'angular-handsontable';
 import {BlockUIModule} from 'ng-block-ui';
-import {ActivityLogComponent} from './activity-log.component';
-import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {SafeHtmlPipe} from '../../pipes/safe-html';
+import {ToDoListComponent} from './to-do-list.component';
 
 
 const components = [];
@@ -14,7 +14,6 @@ const components = [];
 @NgModule({
   imports: [
     CommonModule,
-    Ng2SearchPipeModule,
     FormsModule,
     RouterModule.forChild(routes),
     HotTableModule,
@@ -23,12 +22,12 @@ const components = [];
   ],
   declarations: [
     ...components,
-    ActivityLogComponent
+    ToDoListComponent,
   ],
   exports: [
     ...components,
   ],
   providers: []
 })
-export class ActivityLogModule {
+export class ToDoListModule {
 }

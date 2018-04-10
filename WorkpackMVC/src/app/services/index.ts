@@ -15,6 +15,7 @@ import {ProjectTemplateService} from "./projectTemplate.service";
 import {ExUserService} from './exUser.service';
 import {DashboardService} from './dashboard.service';
 import {ActivityLogService} from './activity-log.service';
+import {ToDoListService} from './to-do-list.service';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {ActivityLogService} from './activity-log.service';
     ServerAuthService,
     DepartmentService,
     DashboardService,
+    ToDoListService,
     RoleService,
     DesignationService,
     UserService,

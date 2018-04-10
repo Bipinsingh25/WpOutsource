@@ -19,12 +19,14 @@ import { ProjectTemplateEffects } from "./projectTemplate.effects";
 import { ExUserEffects } from './exUser.effects';
 import { ProjectEffects } from './project.effects';
 import {DashboardEffects} from './dashboard.effects';
+import {ActivityLogEffects} from './activity.log.effects';
 
 
 
 @NgModule({
   imports: [
     EffectsModule.forRoot([
+      ActivityLogEffects,
       UserAuthEffects,
       MenuEffects,
       DepartmentEffects,
