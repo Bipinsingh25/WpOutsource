@@ -19,8 +19,16 @@ export class ActivityLogComponent implements OnInit {
   projectListData: any;
   activityLog: any;
   searchString: string;
+  selectedProject: string;
+  selectedProjectID: number;
+  searchProject: string;
+  selectedDeliverable: string;
+  selectedDeliverableID: number;
+  taskList:any[];
   constructor(private store: Store<fromRoot.AppState>, private activityService: ActivityLogService) {
-    this.searchString = "";
+    this.searchString = '';
+    this.selectedProject = '';
+    this.searchProject = '';
     this.projectList$ = this.store.select(fromRoot.getActivityLogProjects);
     this.store.dispatch(new GetActivityLogProjectsAction());
   }
@@ -33,18 +41,32 @@ export class ActivityLogComponent implements OnInit {
           if (data !== null) {
             this.projectListData = _.clone(data);
             this.blockUI.stop();
-            console.log('this.projectListData', this.projectListData);
           }
         }, err => {
           console.log('Error in retrieving data');
         }
       );
+  }
 
+  onProjectChange(event){
+    this.selectedProject = event.ProjectName;
+    this.selectedProjectID = event.ProjectID;
+    this.activityService.getTaskListByProjectId(this.selectedProjectID).subscribe(data=>{
+      if(data){
+        this.taskList = data;
+      } else {
+        this.taskList = [];
+      }
+    })
+  }
 
-    this.activityService.getActivityLogBytaskID(17577).subscribe(data=>{
+  onDeliverableSelect(event){
+    this.selectedDeliverable = event.TaskName;
+    this.selectedDeliverableID = event.ProjectTaskID;
+    this.activityService.getActivityLogBytaskID(this.selectedDeliverableID).subscribe(data=>{
+      console.log('data',data);
       if(data){
         this.activityLog = data['list'][0];
-        console.log('this.activityLog',this.activityLog);
       }
     })
   }

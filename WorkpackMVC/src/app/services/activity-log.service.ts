@@ -8,7 +8,7 @@ export class ActivityLogService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getActivityLogBytaskID(taskID: number = 17577): Observable<any> {
+  public getActivityLogBytaskID(taskID: number): Observable<any> {
     return this.httpClient.get('/api/ActivityLog/GetActivityLog?taskID=' + taskID)
       .map((res: Response) => res)
       .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
@@ -16,5 +16,11 @@ export class ActivityLogService {
 
   public getProjectList(): Observable<Array<ProjectList>> {
     return this.httpClient.get<Array<ProjectList>>('/api/ActivityLog/Getprojects');
+  }
+
+  public getTaskListByProjectId(projectId:number): Observable<any>{
+    return this.httpClient.get('/api/ActivityLog/GetAllDelListByProjectID?projectid=' + projectId)
+      .map((res: Response) => res)
+      .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
   }
 }
