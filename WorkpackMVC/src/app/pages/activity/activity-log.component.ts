@@ -19,16 +19,19 @@ export class ActivityLogComponent implements OnInit {
   projectListData: any;
   activityLog: any;
   searchString: string;
-  selectedProject: string;
+  selectedProject: any;
   selectedProjectID: number;
   searchProject: string;
   selectedDeliverable: string;
   selectedDeliverableID: number;
   taskList:any[];
+  selected: number;
   constructor(private store: Store<fromRoot.AppState>, private activityService: ActivityLogService) {
+    this.selected = 0;
     this.searchString = '';
     this.selectedProject = '';
     this.searchProject = '';
+    this.selectedDeliverable = '';
     this.projectList$ = this.store.select(fromRoot.getActivityLogProjects);
     this.store.dispatch(new GetActivityLogProjectsAction());
   }

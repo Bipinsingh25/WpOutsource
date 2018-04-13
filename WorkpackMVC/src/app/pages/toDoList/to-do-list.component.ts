@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {ToDoList} from '../../models/toDoList';
 import {Store} from '@ngrx/store';
@@ -17,8 +17,14 @@ export class ToDoListComponent implements OnInit {
   toDoList$: Observable<ToDoList[]>;
   @BlockUI('blockUI-list') blockUI: NgBlockUI;
   toDoListData: any;
+  date: Date;
+  searchString: string;
   constructor(private store: Store<fromRoot.AppState>, private toDoListService: ToDoListService) {
     this.toDoList$ = this.store.select(fromRoot.getToDoList);
+    this.searchString = '';
+    this.date = new Date();
+    let moment = require('moment');
+    this.date = moment().format('DD-MMM-YYYY');
     this.blockUI.start('Loading...');
     this.store.dispatch(new GetToDoListAction());
   }
@@ -31,7 +37,9 @@ export class ToDoListComponent implements OnInit {
           if (data !== null) {
             this.toDoListData = _.clone(data);
             this.blockUI.stop();
-            console.log('this.toDoListData', this.toDoListData);
+            this.toDoListData.forEach(listData => {
+              listData.title = listData.PendingFor + ' ' + listData.Stage + ' file for ' + '\'' + listData.TaskName + '\'';
+            })
           }
         }, err => {
           console.log('Error in retrieving data');

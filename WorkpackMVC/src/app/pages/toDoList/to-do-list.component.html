@@ -1,3 +1,45 @@
-<p>
-  to-do-list works!
-</p>
+<div class="portlet light portlet-fit bordered">
+  <div class="portlet-body">
+    <div class="mt-element-list">
+      <div class="mt-list-head list-default green-haze">
+        <div class="row">
+          <div class="col-xs-8">
+            <div class="list-head-title-container">
+              <h3 class="list-title uppercase sbold">To Do List</h3>
+              <div class="list-date">{{date}}</div>
+            </div>
+          </div>
+          <div class="col-xs-4" style="text-align: right;">
+            <div id="sample_1_filter" class="dataTables_filter"><label>Search: <input type="search" placeholder=""
+                                                                                      class="form-control input-sm input-small input-inline"
+                                                                                      [(ngModel)]="searchString"
+                                                                                      aria-controls="sample_1"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-list-container list-default">
+        <div class="mt-list-title uppercase">My List
+        </div>
+        <ul>
+          <li class="mt-list-item" *ngFor="let listData of toDoListData| filter: searchString;">
+            <div class="list-icon-container done">
+              <a href="javascript:void(0)">
+                <i class="icon-check"></i>
+              </a>
+            </div>
+            <div class="list-datetime"> Pending Since
+              <br> {{listData.Delay}} days
+            </div>
+            <div class="list-item-content">
+              <h3 class="uppercase bold">
+                <a href="javascript:void(0)">{{listData.title}}</a>
+              </h3>
+              <p>{{listData.ProjectName}}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ import {HotTableModule} from 'angular-handsontable';
 import {BlockUIModule} from 'ng-block-ui';
 import {SafeHtmlPipe} from '../../pipes/safe-html';
 import {ToDoListComponent} from './to-do-list.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 
 const components = [];
@@ -17,6 +18,7 @@ const components = [];
     FormsModule,
     RouterModule.forChild(routes),
     HotTableModule,
+    Ng2SearchPipeModule,
     BlockUIModule,
     ReactiveFormsModule
   ],

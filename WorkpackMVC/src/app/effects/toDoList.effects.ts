@@ -25,7 +25,7 @@ export class ToDoListEffects {
   }
 
   @Effect()
-  get_dashboard$: Observable<Action> = this.actions$
+  toDoList$: Observable<Action> = this.actions$
     .ofType(ToDoListActions.ActionTypes.GET_TO_DO_LIST)
     .switchMap((action: Action) => {
       return this.toDoListService.getToDoList();

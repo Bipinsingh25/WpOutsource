@@ -20,6 +20,7 @@ import { ExUserEffects } from './exUser.effects';
 import { ProjectEffects } from './project.effects';
 import {DashboardEffects} from './dashboard.effects';
 import {ActivityLogEffects} from './activity.log.effects';
+import {ToDoListEffects} from './toDoList.effects';
 
 
 
@@ -31,6 +32,7 @@ import {ActivityLogEffects} from './activity.log.effects';
       MenuEffects,
       DepartmentEffects,
       DashboardEffects,
+      ToDoListEffects,
       RoleEffects,
       DesignationEffects,
       UserEffects,

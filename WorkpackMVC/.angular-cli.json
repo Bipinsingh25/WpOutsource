@@ -31,6 +31,7 @@
         "assets/layouts/layout4/css/custom.min.css",
         "assets/layouts/layout4/css/themes/default.min.css",
         "assets/pages/css/ng2-select.css",
+        "assets/global/plugins/select2/css/select2.css",
         "assets/global/plugins/datatables/datatables.min.css",
         "assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css",
         "../node_modules/angular2-toaster/toaster.css",
@@ -40,6 +41,7 @@
       ],
       "scripts": [
         "assets/global/plugins/jquery.min.js",
+        "assets/global/plugins/select2/js/select2.js",
         "assets/global/plugins/jstree/dist/jstree.js",
         "assets/global/plugins/bootstrap/js/bootstrap.min.js",
         "assets/global/plugins/js.cookie.min.js",
