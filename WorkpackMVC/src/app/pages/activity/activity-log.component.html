@@ -3,44 +3,39 @@
     <div class="portlet-body">
       <div class="row">
         <div class="form-group col-sm-6">
-          <label class="control-label">Project{{selectedProject}}</label>
-          <!---->
-          <select class="form-control" [(ngModel)]="selectedProject" (ngModelChange)="onProjectChange($event)">
-            <option value="Select" disabled>Select...</option>
-            <option *ngFor="let project of projectListData" [ngValue]="project">
-              {{project.ProjectName}}
-            </option>
-          </select>
-          <!--<select2 [data]="projectListData"></select2>-->
-
-          <!--<div class="form-control dropdown">
-            <button id="project" class="btn btn-secondary dropdown-toggle full-width"
-                    data-toggle="dropdown">{{(selectedProject!='')? selectedItem.text : 'Select...'}}</button>
-            <ul id="ddn-menu-project" class="dropdown-menu full-width">
-              <li style="padding: 0 2px 5px 2px;">
-                <div  class="input-group">
-                  <input  class="form-control" placeholder="Search..." type="text" [(ngModel)]="searchProject" id="inp-project-cleartext">
-                </div>
-              </li>
-              <li class="active"
-                  *ngFor="let project of projectListData| filter: searchProject" [ngValue]="project; let i=index"
-                  [ngClass]="{'active': selected === i}">
-                <a id="ddn-option-project-{{i}}" href="javascript:void(0)" (click)="onClick(option, i)">{{option.text}}</a>
-              </li>
-            </ul>
-          </div>-->
-
-
+          <label class="control-label">Project</label>
+          <ng-select
+            [items]="projectListData"
+            (add)="onProjectChange($event)"
+            (remove)="onProjectChange($event)"
+            [multiple]="true"
+            [addTag]="true"
+            bindLabel="ProjectName"
+            bindValue="ProjectID"
+            placeholder="Select Project..."
+            [(ngModel)]="selectedProjectID">
+          </ng-select>
         </div>
         <div class="form-group col-sm-6">
-          <label class="control-label">Deliverable</label>
-          <select class="form-control" [(ngModel)]="selectedDeliverable" (ngModelChange)="onDeliverableSelect($event)">
+          <label class="control-label">Deliverable{{selectedDeliverableID}}</label>
+          <ng-select
+            [items]="taskList"
+            (add)="onDeliverableSelect($event)"
+            (remove)="onDeliverableSelect($event)"
+            [multiple]="true"
+            [addTag]="true"
+            bindLabel="TaskName"
+            bindValue="ProjectTaskID"
+            placeholder="Select Deliverable..."
+            [(ngModel)]="selectedDeliverableID">
+          </ng-select>
+          <!--<select class="form-control" [(ngModel)]="selectedDeliverable" (ngModelChange)="onDeliverableSelect($event)">
             <option value="Select" disabled [selected]="selectedDeliverable==''">Select...</option>
             <option *ngFor="let deliverable of taskList" [ngValue]="deliverable"
                     [selected]="selectedDeliverable==deliverable.TaskName">
               {{deliverable.TaskName}}
             </option>
-          </select>
+          </select>-->
         </div>
       </div>
     </div>

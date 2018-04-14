@@ -36,8 +36,8 @@
         "assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css",
         "../node_modules/angular2-toaster/toaster.css",
         "../node_modules/handsontable/dist/handsontable.full.css",
-        "assets/global/plugins/jstree/dist/themes/default/style.css"
-
+        "assets/global/plugins/jstree/dist/themes/default/style.css",
+        "assets/global/plugins/ng-select/themes/default.theme.css"
       ],
       "scripts": [
         "assets/global/plugins/jquery.min.js",
@@ -58,7 +58,8 @@
         "assets/layouts/layout4/scripts/demo.min.js",
         "assets/layouts/global/scripts/quick-sidebar.min.js",
         "assets/layouts/layout4/scripts/layout.js",
-        "assets/layouts/global/scripts/quick-nav.min.js"
+        "assets/layouts/global/scripts/quick-nav.min.js",
+        "assets/global/plugins/ng-select/bundles/ng-select.umd.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

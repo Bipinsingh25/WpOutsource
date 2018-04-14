@@ -24,8 +24,48 @@ export class ActivityLogComponent implements OnInit {
   searchProject: string;
   selectedDeliverable: string;
   selectedDeliverableID: number;
-  taskList:any[];
+  taskList: any[];
   selected: number;
+
+  sampleData = [
+    {
+      id: '0',
+      text: 'Cars',
+      children: [
+        {
+          id: 'car1',
+          text: 'Car 1'
+        },
+        {
+          id: 'car2',
+          text: 'Car 2'
+        },
+        {
+          id: 'car3',
+          text: 'Car 3'
+        }
+      ]
+    },
+    {
+      id: '0',
+      text: 'Planes',
+      children: [
+        {
+          id: 'plane1',
+          text: 'Plane 1'
+        },
+        {
+          id: 'plane2',
+          text: 'Plane 2'
+        },
+        {
+          id: 'plane3',
+          text: 'Plane 3'
+        }
+      ]
+    }
+  ];
+
   constructor(private store: Store<fromRoot.AppState>, private activityService: ActivityLogService) {
     this.selected = 0;
     this.searchString = '';
@@ -51,11 +91,16 @@ export class ActivityLogComponent implements OnInit {
       );
   }
 
-  onProjectChange(event){
-    this.selectedProject = event.ProjectName;
-    this.selectedProjectID = event.ProjectID;
-    this.activityService.getTaskListByProjectId(this.selectedProjectID).subscribe(data=>{
-      if(data){
+  onProjectChange(event) {
+    console.log('event', event);
+    /*this.selectedProject = event.ProjectName;
+    this.selectedProjectID = event.ProjectID;*/
+    console.log('this.selectedProjectID',this.selectedProjectID);
+    this.selectedProject = this.selectedProjectID.toString().split(',');
+    console.log('this.selectedProject',this.selectedProject);
+    this.selectedDeliverableID = null;
+    this.activityService.getTaskListByProjectId(this.selectedProjectID).subscribe(data => {
+      if (data) {
         this.taskList = data;
       } else {
         this.taskList = [];
@@ -63,12 +108,13 @@ export class ActivityLogComponent implements OnInit {
     })
   }
 
-  onDeliverableSelect(event){
-    this.selectedDeliverable = event.TaskName;
-    this.selectedDeliverableID = event.ProjectTaskID;
-    this.activityService.getActivityLogBytaskID(this.selectedDeliverableID).subscribe(data=>{
-      console.log('data',data);
-      if(data){
+  onDeliverableSelect(event) {
+    /*this.selectedDeliverable = event.TaskName;
+    this.selectedDeliverableID = event.ProjectTaskID;*/
+    console.log('this.selectedDeliverableID',this.selectedDeliverableID);
+    this.activityService.getActivityLogBytaskID(this.selectedDeliverableID[0]).subscribe(data => {
+      console.log('data', data);
+      if (data) {
         this.activityLog = data['list'][0];
       }
     })

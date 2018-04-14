@@ -1,0 +1,13 @@
+.ng-value.ng-star-inserted{
+  border: 0;
+  background-color: #eee;
+}
+
+.ng-select.ng-multiple.ng-control.ng-value-container.ng-value {
+  font-size: 0.9em;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  background-color: #eee !important;;
+  border-radius: 2px;
+  border: 1px solid #c2e0ff;
+}
