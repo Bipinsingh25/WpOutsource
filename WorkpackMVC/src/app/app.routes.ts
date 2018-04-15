@@ -3,6 +3,7 @@ import { CanActivateViaAuthGuard } from './guard/auth.guard';
 //import { SharedModule } from './shared/index';
 import { RouterModule, Routes } from '@angular/router';
 import {ToDoListModule} from './pages/toDoList/to.do.list.module';
+import {EmailModule} from './pages/email/email.module';
 
 
 export const routes: Routes = [
@@ -10,6 +11,7 @@ export const routes: Routes = [
     { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardModule' },
     { path: 'activityLog', loadChildren: './pages/activity/activity.log.module#ActivityLogModule' },
     { path: 'toDoList', loadChildren: './pages/toDoList/to.do.list.module#ToDoListModule' },
+    { path: 'email', loadChildren: './pages/email/email.module#EmailModule' },
     { path: 'userManagement', loadChildren: './pages/admin/userManagement/userManagement.module#UserManagementModule' },
     { path: 'projectManagement', loadChildren: './pages/admin/projectManagement/projectManagement.module#ProjectManagementModule' },
     { path: 'companySettingsManagement', loadChildren: './pages/admin/companySettingsManagement/companySettingsManagement.module#CompanySettingsManagementModule' },

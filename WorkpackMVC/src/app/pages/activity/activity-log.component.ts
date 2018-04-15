@@ -112,7 +112,7 @@ export class ActivityLogComponent implements OnInit {
     /*this.selectedDeliverable = event.TaskName;
     this.selectedDeliverableID = event.ProjectTaskID;*/
     console.log('this.selectedDeliverableID',this.selectedDeliverableID);
-    this.activityService.getActivityLogBytaskID(this.selectedDeliverableID[0]).subscribe(data => {
+    this.activityService.getActivityLogBytaskID(this.selectedDeliverableID).subscribe(data => {
       console.log('data', data);
       if (data) {
         this.activityLog = data['list'][0];
