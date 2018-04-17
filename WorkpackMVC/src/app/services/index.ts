@@ -16,6 +16,7 @@ import {ExUserService} from './exUser.service';
 import {DashboardService} from './dashboard.service';
 import {ActivityLogService} from './activity-log.service';
 import {ToDoListService} from './to-do-list.service';
+import {EmailService} from './email.service';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {ToDoListService} from './to-do-list.service';
     DepartmentService,
     DashboardService,
     ToDoListService,
+    EmailService,
     RoleService,
     DesignationService,
     UserService,
