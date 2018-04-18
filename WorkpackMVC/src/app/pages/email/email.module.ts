@@ -9,6 +9,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {EmailComponent} from './email.component';
 import {WysiHtmlModule} from 'angular2-voog-wysihtml';
+import {CKEditorModule} from 'ng2-ckeditor';
 
 
 const components = [];
@@ -17,6 +18,7 @@ const components = [];
   imports: [
     CommonModule,
     WysiHtmlModule,
+    CKEditorModule,
     Ng2SearchPipeModule,
     NgSelectModule,
     FormsModule,

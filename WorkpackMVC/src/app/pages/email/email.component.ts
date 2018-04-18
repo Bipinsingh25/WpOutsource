@@ -25,6 +25,10 @@ export class EmailComponent implements OnInit {
   ngOnInit() {
   }
 
+  postData(){
+    
+  }
+
   onReviewAndApprovalChange(event) {
     console.log('event', event);
   }
