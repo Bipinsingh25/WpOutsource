@@ -20,10 +20,10 @@ export class EmailService {
       .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
   }
 
-  postemailDataVParameters(user, data): Observable<any> {
+  postemailDataVParameters(user, data, files): Observable<any> {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json; charset=utf-8");
-    return this.httpClient.post('/api/EmailDetails/addCheckerControllerFromMail?user=' + user + data,{ headers: headers })
+    return this.httpClient.post('/api/EmailDetails/addCheckerControllerFromMail?recipients=' + user + 'emailData=' + data + 'attachment=' + files, {headers: headers})
       .map((res: Response) => res)
       .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
   }

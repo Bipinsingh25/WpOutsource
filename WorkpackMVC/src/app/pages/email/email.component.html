@@ -50,7 +50,24 @@
             <label for="files" class="btn green btn-outline fileinput-button">
               <i class="fa fa-plus"></i>
               <span>Add files... </span>
-              <input type="file" name="files[]" multiple="" class="hidden" id="files"> </label>
+              <input type="file" name="files[]" multiple="" class="hidden" id="files" (change)="onClickUploadDocument($event)"> </label>
+
+            <table cellpadding="4" class="grid" >
+              <!--<th>Document ID</th><th>Document Type</th><th>Source</th>
+              <th>Document Date</th><th>Trip ID</th><th>Notes</th><th>Action</th>-->
+              <!--<thead><tr><th></th><th>File Name</th></tr></thead>-->
+              <tbody *ngFor="let file of files">
+              <tr >
+                <!--<td class="form-group"><input type="checkbox" [checked]="checked"></td>-->
+                <td class="form-group"><strong>{{file.name}}</strong></td>
+                <td class="form-group">
+                  <a (click)="remove(file)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                </td>
+              </tr>
+
+              </tbody>
+
+            </table>
             <!-- The table listing the files available for upload/download -->
 
             <table role="presentation" class="table table-striped margin-top-10">
