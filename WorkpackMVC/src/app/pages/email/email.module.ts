@@ -10,6 +10,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import {EmailComponent} from './email.component';
 import {WysiHtmlModule} from 'angular2-voog-wysihtml';
 import {CKEditorModule} from 'ng2-ckeditor';
+import {SafeHtmlPipe} from '../../pipes/safe-html';
 
 
 const components = [];
@@ -29,7 +30,8 @@ const components = [];
   ],
   declarations: [
     ...components,
-    EmailComponent
+    EmailComponent,
+    SafeHtmlPipe
   ],
   exports: [
     ...components,
