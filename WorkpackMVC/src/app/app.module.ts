@@ -35,6 +35,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
 import { EmailComponent } from './pages/email/email.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [

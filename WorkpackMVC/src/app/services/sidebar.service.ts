@@ -204,6 +204,20 @@ export class SidebarService {
         'MenuVisible': 0,
         'OrderMenuHeader': 0,
         'DisableManHours': 0
+      },
+      {
+        // tslint:disable-next-line:max-line-length
+        'ModuleID': 12,
+        'ModuleName': 'User Profile',
+        'routerLink': '/userProfile',
+        'ParentModuleID': 1,
+        'URL': '',
+        'AnchorClass': '',
+        'CountClass': '',
+        'SortOrder': '',
+        'MenuVisible': 0,
+        'OrderMenuHeader': 0,
+        'DisableManHours': 0
       }
     ];
 

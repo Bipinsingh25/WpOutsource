@@ -72,16 +72,6 @@ export class EmailComponent implements OnInit {
     }
   }
 
-  /*  onReviewAndApprovalChangeRemove(event) {
-      console.log('event', event);
-      if (event) {
-        this.reviewAndApproval = event.UserId + ':Y';
-        this.user = this.user.filter(u => u.UserId !== this.reviewAndApproval);
-        this.multiSelect.push(event);
-        console.log('this.user', this.user);
-      }
-    }*/
-
   onReferenceChange(event) {
     console.log('event', event);
     if (event) {
