@@ -21,6 +21,7 @@ import { ProjectEffects } from './project.effects';
 import {DashboardEffects} from './dashboard.effects';
 import {ActivityLogEffects} from './activity.log.effects';
 import {ToDoListEffects} from './toDoList.effects';
+import {UserProfileEffects} from './user.profile.effects';
 
 
 
@@ -42,7 +43,8 @@ import {ToDoListEffects} from './toDoList.effects';
       ClientEffects,
       ProjectTemplateEffects,
       ExUserEffects,
-      ProjectEffects
+      ProjectEffects,
+      UserProfileEffects
     ])
   ]
 })

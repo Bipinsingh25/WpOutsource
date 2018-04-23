@@ -17,6 +17,7 @@ import {DashboardService} from './dashboard.service';
 import {ActivityLogService} from './activity-log.service';
 import {ToDoListService} from './to-do-list.service';
 import {EmailService} from './email.service';
+import {UserProfileService} from './user-profile.service';
 
 
 @NgModule({
@@ -38,8 +39,8 @@ import {EmailService} from './email.service';
     ProjectService,
     ProjectTemplateService,
     ExUserService,
-    ActivityLogService
-
+    ActivityLogService,
+    UserProfileService
   ]
 })
 export class ServiceModule {

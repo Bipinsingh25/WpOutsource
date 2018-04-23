@@ -17,6 +17,7 @@ import * as fromSidebarReducer from './sidebar.reducers';
 import * as fromUserReducer from './user.reducer';
 import * as fromProjectTemplateReducer from './projectTemplate.reducers';
 import * as fromExUserReducer from './exUser.reducers';
+import * as fromUserProfileReducer from './user.profile.reducers';
 
 import {storeFreeze} from 'ngrx-store-freeze';
 import {createSelector} from 'reselect';
@@ -38,28 +39,30 @@ export interface AppState {
   sidebarMenu: fromSidebarReducer.State;
   projectTemplate: fromProjectTemplateReducer.State;
   exUser: fromExUserReducer.State;
+  userProfileData: fromUserProfileReducer.State;
 
 }
 
 const reducers = {
-  client: fromClientReducer.reducer,
-  department: fromDepartmentReducer.reducer,
-  designation: fromDesignationReducer.reducer,
-  dashboard: fromDashboardReducer.reducer,
-  dashboardMenuList: fromDashboardReducer.reducer,
-  toDoList:fromToDoListReducer.reducer,
-  activityLogProjectList: fromActivityLogReducer.reducer,
-  project: fromProjectReducer.reducer,
-  projectType: fromProjectTypeReducer.reducer,
-  projectStatus: fromProjectStatusReducer.reducer,
-  priority: fromPriorityReducer.reducer,
-  role: fromRoleReducer.reducer,
-  user: fromUserReducer.reducer,
-  sidebarMenu: fromSidebarReducer.reducer,
-  projectTemplate: fromProjectTemplateReducer.reducer,
-  exUser: fromExUserReducer.reducer,
-
-};
+    client: fromClientReducer.reducer,
+    department: fromDepartmentReducer.reducer,
+    designation: fromDesignationReducer.reducer,
+    dashboard: fromDashboardReducer.reducer,
+    dashboardMenuList: fromDashboardReducer.reducer,
+    toDoList: fromToDoListReducer.reducer,
+    activityLogProjectList: fromActivityLogReducer.reducer,
+    project: fromProjectReducer.reducer,
+    projectType: fromProjectTypeReducer.reducer,
+    projectStatus: fromProjectStatusReducer.reducer,
+    priority: fromPriorityReducer.reducer,
+    role: fromRoleReducer.reducer,
+    user: fromUserReducer.reducer,
+    sidebarMenu: fromSidebarReducer.reducer,
+    projectTemplate: fromProjectTemplateReducer.reducer,
+    exUser: fromExUserReducer.reducer,
+    userProfileData: fromUserProfileReducer.reducer
+  }
+;
 
 export const developmentReducer: ActionReducerMap<AppState> = (reducers);
 // compose(storeFreeze, combineReducers)(reducers);
@@ -112,7 +115,14 @@ export function getDepartmentState(state: AppState): fromDepartmentReducer.State
   return state && state.department;
 }
 
-export const getDepartment = compose(fromDepartmentReducer.getDepartment, getDepartmentState);
+export const getDepartment = compose(fromDepartmentReducer.getDepartment, getDepartmentState);// =============== department states and compose methods ===============================================
+
+// =============== User Profile states and compose methods ===============================================
+export function getUserProfileState(state: AppState): fromUserProfileReducer.State {
+  return state && state.userProfileData;
+}
+
+export const getUserProfileData = compose(fromUserProfileReducer.getUserProfileData, getUserProfileState);
 
 // =============== role states and compose methods ===============================================
 
@@ -138,7 +148,6 @@ export function getToDoListState(state: AppState): fromToDoListReducer.State {
 }
 
 export const getToDoList = compose(fromToDoListReducer.getToDoList, getToDoListState);
-
 
 
 // =============== Dashboard states and compose methods ===============================================
