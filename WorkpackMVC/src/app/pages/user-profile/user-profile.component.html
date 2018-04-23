@@ -1,5 +1,6 @@
 <!-- BEGIN PROFILE SIDEBAR -->
-<div class="profile-sidebar">
+<div *ngIf="!userProfileData">No Data Found</div>
+<div class="profile-sidebar" *ngIf="userProfileData">
   <!-- PORTLET MAIN -->
   <div class="portlet light profile-sidebar-portlet bordered">
     <!-- SIDEBAR USERPIC -->
@@ -8,8 +9,10 @@
     <!-- END SIDEBAR USERPIC -->
     <!-- SIDEBAR USER TITLE -->
     <div class="profile-usertitle">
-      <div class="profile-usertitle-name"> Marcus Doe</div>
-      <div class="profile-usertitle-job"> Developer</div>
+      <div class="profile-usertitle-name"> {{userPersonalDetails[0].Fullname}}</div>
+      <div class="profile-usertitle-job"> {{userPersonalDetails[0].DesignationName}}</div>
+      <div class="profile-usertitle-job"> {{userPersonalDetails[0].EmailID1}}</div>
+      <div class="profile-usertitle-job"> {{userPersonalDetails[0].Location}}</div>
     </div>
     <!-- END SIDEBAR USER TITLE -->
     <!-- SIDEBAR BUTTONS -->
@@ -35,24 +38,24 @@
   </div>
   <!-- END PORTLET MAIN -->
   <!-- PORTLET MAIN -->
-  <div class="portlet light bordered">
-    <!-- STAT -->
-    <div class="row list-separated profile-stat">
-      <div class="col-md-4 col-sm-4 col-xs-6">
-        <div class="uppercase profile-stat-title"> 37</div>
-        <div class="uppercase profile-stat-text"> Projects</div>
-      </div>
-      <div class="col-md-4 col-sm-4 col-xs-6">
-        <div class="uppercase profile-stat-title"> 51</div>
-        <div class="uppercase profile-stat-text"> Tasks</div>
-      </div>
-      <div class="col-md-4 col-sm-4 col-xs-6">
-        <div class="uppercase profile-stat-title"> 61</div>
-        <div class="uppercase profile-stat-text"> Uploads</div>
-      </div>
-    </div>
-    <!-- END STAT -->
-    <div>
+  <!--<div class="portlet light bordered">
+    &lt;!&ndash; STAT &ndash;&gt;
+    &lt;!&ndash; <div class="row list-separated profile-stat">
+       <div class="col-md-4 col-sm-4 col-xs-6">
+         <div class="uppercase profile-stat-title"> 37</div>
+         <div class="uppercase profile-stat-text"> Projects</div>
+       </div>
+       <div class="col-md-4 col-sm-4 col-xs-6">
+         <div class="uppercase profile-stat-title"> 51</div>
+         <div class="uppercase profile-stat-text"> Tasks</div>
+       </div>
+       <div class="col-md-4 col-sm-4 col-xs-6">
+         <div class="uppercase profile-stat-title"> 61</div>
+         <div class="uppercase profile-stat-text"> Uploads</div>
+       </div>
+     </div>&ndash;&gt;
+    &lt;!&ndash; END STAT &ndash;&gt;
+    &lt;!&ndash;<div>
       <h4 class="profile-desc-title">About Marcus Doe</h4>
       <span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
       <div class="margin-top-20 profile-desc-link">
@@ -67,8 +70,8 @@
         <i class="fa fa-facebook"></i>
         <a href="http://www.facebook.com/keenthemes/">keenthemes</a>
       </div>
-    </div>
-  </div>
+    </div>&ndash;&gt;
+  </div>-->
   <!-- END PORTLET MAIN -->
 </div>
 <!-- END BEGIN PROFILE SIDEBAR -->
@@ -764,3 +767,49 @@
   </div>
 </div>
 <!-- END PROFILE CONTENT -->
+<div class="profile-content">
+  <div class="portlet light bordered">
+    <div class="portlet-body">
+      <div class="mt-element-list">
+        <div class="mt-list-head list-default green-haze">
+          <div class="row">
+            <div class="col-xs-8">
+              <div class="list-head-title-container">
+                <h3 class="list-title uppercase sbold">On Going Projects</h3>
+              </div>
+            </div>
+            <div class="col-xs-4" style="text-align: right;">
+              <div id="sample_1_filter" class="dataTables_filter"><label>Search: <input type="search" placeholder=""
+                                                                                        class="form-control input-sm input-small input-inline"
+                                                                                        [(ngModel)]="searchString"
+                                                                                        aria-controls="sample_1"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-list-container list-default">
+          <div class="mt-list-title uppercase">My List
+          </div>
+          <ul>
+            <li class="mt-list-item" *ngFor="let listData of onGoingProjectDetails| filter: searchString;">
+              <div class="list-icon-container done">
+                <a href="javascript:void(0)">
+                  <i class="icon-check"></i>
+                </a>
+              </div>
+              <div class="list-datetime" style="width:300px;"> Start Date: {{listData.ProjectStartDate}}
+                <br> End Date: {{listData.ProjectEndDate}}
+              </div>
+              <div class="list-item-content">
+                <h3 class="uppercase bold">
+                  <a href="javascript:void(0)">{{listData.ProjectCode}}-{{listData.ProjectName}}</a>
+                </h3>
+                <p>{{listData.ProjectDescription}}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

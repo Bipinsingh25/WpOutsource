@@ -16,7 +16,12 @@ export class UserProfileComponent implements OnInit {
   userProfile$: Observable<any[]>;
   @BlockUI('blockUI-list') blockUI: NgBlockUI;
   userProfileData: any;
+  userPersonalDetails:any;
+  onGoingProjectDetails:any;
+  searchString: string;
+
   constructor(private store: Store<fromRoot.AppState>, private userProfileService: UserProfileService) {
+    this.searchString = '';
     this.userProfile$ = this.store.select(fromRoot.getUserProfileData);
     this.blockUI.start('Loading...');
     this.store.dispatch(new GetUserProfileDataAction());
@@ -28,9 +33,11 @@ export class UserProfileComponent implements OnInit {
       .do(() => this.blockUI.start('Loading...'))
       .subscribe(
         data => {
-          if (data !== null) {
+          if (data && data.length > 0) {
             this.userProfileData = _.clone(data);
-            console.log('this.userProfileData',this.userProfileData);
+            console.log('this.userProfileData', this.userProfileData);
+            this.userPersonalDetails = this.userProfileData[0];
+            this.onGoingProjectDetails = this.userProfileData[5];
             this.blockUI.stop();
           }
         }, err => {

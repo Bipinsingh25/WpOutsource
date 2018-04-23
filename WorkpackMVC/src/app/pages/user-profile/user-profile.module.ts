@@ -17,6 +17,7 @@ import { UserRoleResolve } from "app/routeResolve/userRole.resolve";
 import { UserListComponent } from "./user/userlist.component";
 import { UserResolve } from "app/routeResolve/user.resolve";*/
 import {UserProfileComponent} from './user-profile.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 /*UserComponent,
   UserListComponent,
@@ -33,6 +34,7 @@ const components = [
     FormsModule,
     RouterModule.forChild(routes),
     HotTableModule,
+    Ng2SearchPipeModule,
     BlockUIModule,
     ReactiveFormsModule
   ],
