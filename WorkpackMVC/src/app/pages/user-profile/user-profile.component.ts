@@ -18,10 +18,15 @@ export class UserProfileComponent implements OnInit {
   userProfileData: any;
   userPersonalDetails:any;
   onGoingProjectDetails:any;
+  experienceSummary:any;
+  skillSummary:any;
+  technologySummary:any;
   searchString: string;
+  experienceSearchString: string;
 
   constructor(private store: Store<fromRoot.AppState>, private userProfileService: UserProfileService) {
     this.searchString = '';
+    this.experienceSearchString = '';
     this.userProfile$ = this.store.select(fromRoot.getUserProfileData);
     this.blockUI.start('Loading...');
     this.store.dispatch(new GetUserProfileDataAction());
@@ -37,6 +42,9 @@ export class UserProfileComponent implements OnInit {
             this.userProfileData = _.clone(data);
             console.log('this.userProfileData', this.userProfileData);
             this.userPersonalDetails = this.userProfileData[0];
+            this.experienceSummary = this.userProfileData[2];
+            this.skillSummary = this.userProfileData[3];
+            this.technologySummary = this.userProfileData[4];
             this.onGoingProjectDetails = this.userProfileData[5];
             this.blockUI.stop();
           }
