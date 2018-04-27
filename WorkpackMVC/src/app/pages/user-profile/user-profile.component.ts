@@ -13,18 +13,30 @@ import * as _ from 'lodash';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  logo: any;
   userProfile$: Observable<any[]>;
   @BlockUI('blockUI-list') blockUI: NgBlockUI;
   userProfileData: any;
-  userPersonalDetails:any;
-  onGoingProjectDetails:any;
-  experienceSummary:any;
-  skillSummary:any;
-  technologySummary:any;
+  userPersonalDetails: any;
+  onGoingProjectDetails: any;
+  experienceSummary: any;
+  skillSummary: any;
+  technologySummary: any;
   searchString: string;
   experienceSearchString: string;
+  showUserProfile: boolean;
+  showManageAccount: boolean;
+  experienceSummaryContext: string;
+  personalInfoMessage: any;
+  oldPassword: string;
+  newPassword: string;
+  changePasswordMessage:any;
+  retypePassword: string;
 
   constructor(private store: Store<fromRoot.AppState>, private userProfileService: UserProfileService) {
+    this.showUserProfile = true;
+    this.experienceSummaryContext = '';
+    this.showManageAccount = false;
     this.searchString = '';
     this.experienceSearchString = '';
     this.userProfile$ = this.store.select(fromRoot.getUserProfileData);
@@ -52,6 +64,50 @@ export class UserProfileComponent implements OnInit {
           console.log('Error in retrieving data');
         }
       );
+  }
+
+  overview() {
+    this.showManageAccount = false;
+    this.showUserProfile = true;
+  }
+
+  manageAccount() {
+    this.showManageAccount = true;
+    this.showUserProfile = false;
+  }
+
+  postPersonalInfo(location, skills, technology, experience) {
+    this.userProfileService.postPersonalInfo(location, skills, technology, experience).subscribe(data => {
+      if (data) {
+        console.log('data', data);
+        this.personalInfoMessage = data;
+      }
+    })
+  }
+
+  changePassword(oldPassword,newPassword,retypePassword){
+    if(this.newPassword == retypePassword){
+      this.userProfileService.changePassword(this.oldPassword,this.newPassword).subscribe(data => {
+        if (data) {
+          console.log('data', data);
+          this.changePasswordMessage = data;
+        }
+      })
+    } else {
+      console.log('Invalid');
+    }
+  }
+
+  onFileChange(fileInput: any){
+    this.logo = fileInput.target.files[0];
+
+    let reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      this.logo = e.target.result;
+    };
+
+    // reader.readAsDataURL(fileInput.target.files[0]);
   }
 
 }
