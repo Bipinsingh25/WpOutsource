@@ -7,6 +7,7 @@ import * as fromRoot from '../../reducers';
 import {Store} from '@ngrx/store';
 import * as _ from 'lodash';
 import {GetActivityLogProjectsAction} from '../../actions/activityLog.actions';
+import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 
 @Component({
   selector: 'activity-log',
@@ -26,45 +27,6 @@ export class ActivityLogComponent implements OnInit {
   selectedDeliverableID: number;
   taskList: any[];
   selected: number;
-
-  sampleData = [
-    {
-      id: '0',
-      text: 'Cars',
-      children: [
-        {
-          id: 'car1',
-          text: 'Car 1'
-        },
-        {
-          id: 'car2',
-          text: 'Car 2'
-        },
-        {
-          id: 'car3',
-          text: 'Car 3'
-        }
-      ]
-    },
-    {
-      id: '0',
-      text: 'Planes',
-      children: [
-        {
-          id: 'plane1',
-          text: 'Plane 1'
-        },
-        {
-          id: 'plane2',
-          text: 'Plane 2'
-        },
-        {
-          id: 'plane3',
-          text: 'Plane 3'
-        }
-      ]
-    }
-  ];
 
   constructor(private store: Store<fromRoot.AppState>, private activityService: ActivityLogService) {
     this.selected = 0;
@@ -118,5 +80,17 @@ export class ActivityLogComponent implements OnInit {
         this.activityLog = data['list'][0];
       }
     })
+  }
+
+  downloadCSV(){
+    const options = {
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalseparator: '.',
+      showLabels: true,
+      showTitle: false,
+      headers: ['File','Rev','Action','Action Date & Time','Action By','Stage']
+    };
+    new Angular2Csv(this.activityLog, 'ActivityLog',options);
   }
 }

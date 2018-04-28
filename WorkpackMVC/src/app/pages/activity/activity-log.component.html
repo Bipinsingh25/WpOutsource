@@ -58,7 +58,7 @@
                aria-controls="sample_1"
                href="javascript:void(0)"><span>Excel</span></a>
             <a class="dt-button buttons-csv buttons-html5 btn purple btn-outline"
-               tabindex="0" aria-controls="sample_1" href="javascript:void(0)"><span>CSV</span></a>
+               tabindex="0" aria-controls="sample_1" href="javascript:void(0)" (click)="downloadCSV()"><span>CSV</span></a>
             <a class="dt-button buttons-collection buttons-colvis btn dark btn-outline" tabindex="0"
                aria-controls="sample_1" href="javascript:void(0)"><span>Columns</span></a>
           </div>
@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="table-scrollable table-scrollable-borderless">
-        <table class="table table-hover table-light">
+        <table class="table table-hover table-light" id="example">
           <thead class="fixed-header">
           <tr class="uppercase">
             <th class="col-sm-3 dashboard-heading">File</th>
