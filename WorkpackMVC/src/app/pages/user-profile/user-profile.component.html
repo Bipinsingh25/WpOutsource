@@ -116,7 +116,7 @@
     </div>
   </div>
 </div>
-<div class="profile-content" *ngIf="showUserProfile">
+<div class="profile" style="margin-top: 7%;" *ngIf="showUserProfile">
   <div class="portlet light bordered">
     <div class="portlet-body">
       <div class="mt-element-list">
@@ -264,6 +264,10 @@
                 <div class="form-group">
                   <label class="control-label">Re-type New Password</label>
                   <input type="password" class="form-control" [(ngModel)]="retypePassword" name="retypePassword"></div>
+
+                <div><strong>Note:</strong>Password should be AlphaNumeric and should contain at least one of the
+                  special characters:" ~, !, @, #, $, %, &, ^, *,_
+                </div>
                 <div class="margin-top-10">
                   <a href="javascript:void(0)" class="btn green"
                      (click)="changePassword(oldPassword, newPassword, retypePassword)"> Change Password </a>
@@ -275,75 +279,24 @@
             <!-- PRIVACY SETTINGS TAB -->
             <div class="tab-pane" id="tab_1_4">
               <form action="#">
-                <table class="table table-light table-hover">
-                  <tbody>
-                  <tr>
-                    <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus..</td>
-                    <td>
-                      <div class="mt-radio-inline">
-                        <label class="mt-radio">
-                          <input type="radio" name="optionsRadios1" value="option1"> Yes
-                          <span></span>
-                        </label>
-                        <label class="mt-radio">
-                          <input type="radio" name="optionsRadios1" value="option2" checked=""> No
-                          <span></span>
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon</td>
-                    <td>
-                      <div class="mt-radio-inline">
-                        <label class="mt-radio">
-                          <input type="radio" name="optionsRadios11" value="option1"> Yes
-                          <span></span>
-                        </label>
-                        <label class="mt-radio">
-                          <input type="radio" name="optionsRadios11" value="option2" checked=""> No
-                          <span></span>
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon</td>
-                    <td>
-                      <div class="mt-radio-inline">
-                        <label class="mt-radio">
-                          <input type="radio" name="optionsRadios21" value="option1"> Yes
-                          <span></span>
-                        </label>
-                        <label class="mt-radio">
-                          <input type="radio" name="optionsRadios21" value="option2" checked=""> No
-                          <span></span>
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon</td>
-                    <td>
-                      <div class="mt-radio-inline">
-                        <label class="mt-radio">
-                          <input type="radio" name="optionsRadios31" value="option1"> Yes
-                          <span></span>
-                        </label>
-                        <label class="mt-radio">
-                          <input type="radio" name="optionsRadios31" value="option2" checked=""> No
-                          <span></span>
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-                <!--end profile-settings-->
-                <div class="margin-top-10">
-                  <a href="javascript:;" class="btn red"> Save Changes </a>
-                  <a href="javascript:;" class="btn default"> Cancel </a>
+                <div class="form-group">
+                  <label class="control-label">Email</label>
+                  <input type="text" class="form-control disabled" [(ngModel)]="userPersonalDetails[0].EmailID1" name="email" readonly>
                 </div>
+                <div class="form-group">
+                  <label class="control-label">SMTP Host</label>
+                  <input type="text" class="form-control" [(ngModel)]="smtpHost" name="smtpHost"></div>
+                <div class="form-group">
+                  <label class="control-label">Email Password</label>
+                  <input type="password" class="form-control" [(ngModel)]="emailPassword" name="emailPassword"></div>
+                <div class="margin-top-10">
+                  <a href="javascript:void(0)" class="btn green"
+                     (click)="sendSMTPVerificationEmail(smtpHost,emailPassword)"> Send Verification Email </a>
+                  <a href="javascript:void(0)" class="btn green"
+                     (click)="integrateUserSMPT(smtpHost,emailPassword)"> Save </a>
+                  <a href="javascript:void(0)" class="btn default"> Cancel </a>
+                </div>
+                <div>{{emailIntegrationMessage.Message}}</div>
               </form>
             </div>
             <!-- END PRIVACY SETTINGS TAB -->

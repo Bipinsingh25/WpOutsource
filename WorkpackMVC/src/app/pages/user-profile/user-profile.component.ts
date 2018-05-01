@@ -32,10 +32,14 @@ export class UserProfileComponent implements OnInit {
   newPassword: string;
   changePasswordMessage:any;
   retypePassword: string;
+  emailPassword: string;
+  smtpHost: string;
+  emailIntegrationMessage: string;
 
   constructor(private store: Store<fromRoot.AppState>, private userProfileService: UserProfileService) {
     this.showUserProfile = true;
     this.experienceSummaryContext = '';
+    this.emailIntegrationMessage = '';
     this.showManageAccount = false;
     this.searchString = '';
     this.experienceSearchString = '';
@@ -96,6 +100,24 @@ export class UserProfileComponent implements OnInit {
     } else {
       console.log('Invalid');
     }
+  }
+
+  integrateUserSMPT(smtpHost,password){
+    this.userProfileService.integrateUserSMPT(smtpHost,password).subscribe(data => {
+      if (data) {
+        console.log('data', data);
+        this.emailIntegrationMessage = data;
+      }
+    })
+  }
+
+  sendSMTPVerificationEmail(smtpHost,password){
+    this.userProfileService.sendSMTPVerificationEmail(smtpHost,password).subscribe(data => {
+      if (data) {
+        console.log('data', data);
+        this.emailIntegrationMessage = data;
+      }
+    })
   }
 
   onFileChange(fileInput: any){

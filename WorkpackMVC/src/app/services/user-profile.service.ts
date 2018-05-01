@@ -28,6 +28,22 @@ export class UserProfileService {
       .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
   }
 
+  public integrateUserSMPT(smtpHost, password): Observable<any> {
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json; charset=utf-8");
+    return this.httpClient.post('/api/UsersData/IntegrateUserSMPT?SMTPHost=' + smtpHost + '&EmailPassword=' + password, {headers: headers})
+      .map((res: Response) => res)
+      .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
+  }
+
+  public sendSMTPVerificationEmail(smtpHost, password): Observable<any> {
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json; charset=utf-8");
+    return this.httpClient.post('/api/UsersData/SendSMTPVerificationEmail?SMTPHost=' + smtpHost + '&EmailPassword=' + password, {headers: headers})
+      .map((res: Response) => res)
+      .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
+  }
+
 
 }
 
