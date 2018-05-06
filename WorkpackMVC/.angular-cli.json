@@ -36,6 +36,7 @@
         "assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css",
         "../node_modules/angular2-toaster/toaster.css",
         "../node_modules/handsontable/dist/handsontable.full.css",
+        "assets/global/plugins/dhtmlx-gantt/dhtmlxgantt.css",
         "assets/global/plugins/jstree/dist/themes/default/style.css",
         "assets/global/plugins/ng-select/themes/default.theme.css"
       ],

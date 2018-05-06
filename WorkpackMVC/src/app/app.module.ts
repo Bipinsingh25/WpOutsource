@@ -34,8 +34,10 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
-import { EmailComponent } from './pages/email/email.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import {InMemoryDataService} from './services/in-memory-data.service';
+import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {HttpModule} from '@angular/http';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +45,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
   ],
   imports: [
     BrowserModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
     BrowserAnimationsModule,
     StoreModule.forRoot(productionReducer),
     StoreDevtoolsModule.instrument({
@@ -52,6 +55,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     ToasterModule,
     ServiceModule,
     AppEffectsModule,
+    HttpModule,
     HttpClientModule,
     UiModule,
     BlockUIModule

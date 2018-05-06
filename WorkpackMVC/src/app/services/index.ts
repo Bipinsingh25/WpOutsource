@@ -18,6 +18,8 @@ import {ActivityLogService} from './activity-log.service';
 import {ToDoListService} from './to-do-list.service';
 import {EmailService} from './email.service';
 import {UserProfileService} from './user-profile.service';
+import {LinkService} from './link.service';
+import {TaskService} from './task.service';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import {UserProfileService} from './user-profile.service';
     ProjectTemplateService,
     ExUserService,
     ActivityLogService,
-    UserProfileService
+    UserProfileService,
+    LinkService,
+    TaskService
   ]
 })
 export class ServiceModule {

@@ -8,6 +8,7 @@ import {BlockUIModule} from 'ng-block-ui';
 import {ActivityLogComponent} from './activity-log.component';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { NgSelectModule } from '@ng-select/ng-select';
+import {GanttComponent} from '../gantt/gantt.component';
 
 
 const components = [];
@@ -25,7 +26,8 @@ const components = [];
   ],
   declarations: [
     ...components,
-    ActivityLogComponent
+    ActivityLogComponent,
+    GanttComponent
   ],
   exports: [
     ...components,
