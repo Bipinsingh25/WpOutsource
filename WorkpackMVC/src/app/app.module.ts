@@ -34,9 +34,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/of';
-import {InMemoryDataService} from './services/in-memory-data.service';
-import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {HttpModule} from '@angular/http';
 
 
 @NgModule({
@@ -45,7 +42,7 @@ import {HttpModule} from '@angular/http';
   ],
   imports: [
     BrowserModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+
     BrowserAnimationsModule,
     StoreModule.forRoot(productionReducer),
     StoreDevtoolsModule.instrument({
@@ -55,7 +52,6 @@ import {HttpModule} from '@angular/http';
     ToasterModule,
     ServiceModule,
     AppEffectsModule,
-    HttpModule,
     HttpClientModule,
     UiModule,
     BlockUIModule

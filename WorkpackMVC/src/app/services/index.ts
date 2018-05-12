@@ -20,6 +20,7 @@ import {EmailService} from './email.service';
 import {UserProfileService} from './user-profile.service';
 import {LinkService} from './link.service';
 import {TaskService} from './task.service';
+import {GanttService} from './gantt.service';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {TaskService} from './task.service';
     ActivityLogService,
     UserProfileService,
     LinkService,
-    TaskService
+    TaskService,
+    GanttService
   ]
 })
 export class ServiceModule {
