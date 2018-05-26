@@ -1,11 +1,11 @@
 /*!
  * @license
- * 
+ *
  * dhtmlxGantt v.5.1.0 Stardard
  * This software is covered by GPL license. You also can obtain Commercial or Enterprise license to use it in non-GPL project - please contact sales@dhtmlx.com. Usage without proper license is prohibited.
- * 
+ *
  * (c) Dinamenta, UAB.
- * 
+ *
  */
 .buttonBg {
   background: #fff;
@@ -253,15 +253,18 @@
   position: relative;
   -moz-opacity: 0.3;
   opacity: 0.3;
+  display: none;
 }
 .gantt_grid_head_cell.gantt_grid_head_add {
   -moz-opacity: 0.6;
   opacity: 0.6;
   top: 0;
+  display: none;
 }
 .gantt_grid_head_cell.gantt_grid_head_add:hover {
   -moz-opacity: 1;
   opacity: 1;
+  display: none;
 }
 .gantt_grid_data .gantt_row:hover,
 .gantt_grid_data .gantt_row.odd:hover {
@@ -271,6 +274,7 @@
 .gantt_grid_data .gantt_row.odd:hover .gantt_add {
   -moz-opacity: 1;
   opacity: 1;
+  display: none;
 }
 .gantt_task_row,
 .gantt_row {

@@ -17,19 +17,21 @@ export class LinkService {
   }
 
   insert(link: Link): Observable<Link> {
+    console.log('link', JSON.stringify(link));
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json; charset=utf-8");
-    return this.http.post(this.linkUrl, JSON.stringify(link),{headers: headers})
+    return this.http.post('/api/insertGanttChartLink', JSON.stringify(link),{headers: headers})
       .map((res: Response) => res)
       .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
   }
 
   update(link: Link): Observable<any> {
-    return this.http.put(`${this.linkUrl}/${link.id}`, JSON.stringify(link));
+    console.log('link', JSON.stringify(link));
+    return this.http.put(`/api/updateGanttChartLink/${link.id}`, JSON.stringify(link));
   }
 
   remove(id: number): Observable<void> {
-    return this.http.delete(`${this.linkUrl}/${id}`)
+    return this.http.delete(`/api/deleteGanttChartLink/${id}`)
       .map((res: Response) => res)
       .catch((error: HttpErrorResponse) => Observable.throw(error.error || 'Server error'));
   }

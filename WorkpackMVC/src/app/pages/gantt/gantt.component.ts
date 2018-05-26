@@ -75,6 +75,8 @@ export class GanttComponent implements OnInit {
     console.log('in ng oninit');
     gantt.config.xml_date = "%m/%d/%Y";
     this.setScaleConfig("year");
+    gantt.config.highlight_critical_path = true;
+
     gantt.init(this.ganttContainer.nativeElement);
     this.ganttService.getChartData().subscribe(data => {
       console.log('data', data);
@@ -97,16 +99,17 @@ export class GanttComponent implements OnInit {
     });
 
     gantt.attachEvent("onAfterTaskUpdate", (id, item) => {
-      console.log('onAfterTaskUpdate');
+      console.log('onAfterTaskUpdate', id, item);
       this.taskService.update(this.serializeTask(item));
     });
 
     gantt.attachEvent("onAfterTaskDelete", (id) => {
+      console.log('onAfterTaskDelete', id);
       this.taskService.remove(id);
     });
 
     gantt.attachEvent("onAfterLinkAdd", (id, item) => {
-      console.log('onAfterLinkAdd');
+      console.log('onAfterLinkAdd', id, item);
       this.linkService.insert(this.serializeLink(item, true))
         .subscribe((response) => {
           if (response.id != id) {
@@ -116,7 +119,7 @@ export class GanttComponent implements OnInit {
     });
 
     gantt.attachEvent("onAfterLinkUpdate", (id, item) => {
-      console.log('onAfterLinkUpdate');
+      console.log('onAfterLinkUpdate', id, item);
       this.linkService.update(this.serializeLink(item));
     });
 
@@ -203,12 +206,11 @@ export class GanttComponent implements OnInit {
         result[i] = data[i];
       }
     }
-
     return result;
   }
 
   radioButtonCheck(event) {
-    console.log('event',event);
+    console.log('event', event);
     this.setScaleConfig(event.target.value);
     gantt.render();
   }

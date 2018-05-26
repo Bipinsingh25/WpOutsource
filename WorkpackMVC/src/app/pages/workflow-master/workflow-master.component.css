@@ -1,0 +1,26 @@
+
+
+:host /deep/ .ht_master tr td {
+  background-color: #ffffff;
+  line-height: 30px;
+}
+
+:host /deep/ .handsontable th {
+  background-color: #ffffff;
+  line-height: 30px;
+}
+
+
+/* Row headers */
+:host /deep/ .ht_clone_left th {
+  background-color: #ffffff;
+  line-height: 30px;
+}
+
+/* Column headers */
+:host /deep/ .ht_clone_top th {
+  background-color: #ffffff;
+  line-height: 30px;
+  color: #333333;
+  font-weight: bold;
+}

@@ -31,6 +31,83 @@ export class DashboardComponent implements OnInit {
   modalProjectName: string;
   modalTaskName: string;
   vStr: string;
+  mileStoneObject = {
+    PlannedDate: null,
+    RedirectURL: "UploadDeliverables.aspx?DeliverableID=89921",
+    projecttaskID: 89921,
+    taskName: "Upload / Edit Data for modalTaskName(Ex. BOM, Complete,etc)",
+    childrenData: [{
+      value: 'Root node 3',
+      RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+      parent: false,
+      open: true,
+      flag: true,
+      childrens: []
+    }, {
+      value: 'Root node 1',
+      RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+      parent: true,
+      open: true,
+      flag: true,
+      childrens: [{
+        value: "Initially selected",
+        RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+        parent: false,
+        open: true,
+        flag: true
+      }, {
+        value: "custom icon URL",
+        RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+        parent: false,
+        open: true,
+        flag: false
+      }, {
+        value: "custom icon URL",
+        RedirectURL: "",
+        parent: true,
+        open: true,
+        flag: true,
+        childrens: [{values: "X", RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920", open: true, flag: true}, {
+          values: "Y",
+          RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+          open: true,
+          flag: false
+        }, {values: "Z", RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920", open: true, flag: true}]
+      }]
+    }, {
+      value: 'Root node 2',
+      RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+      parent: true,
+      open: true,
+      flag: true,
+      childrens: [{
+        value: "Initially selected 2",
+        RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+        parent: false,
+        open: true,
+        flag: true,
+      }, {
+        value: "custom icon URL 2",
+        RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+        parent: false,
+        open: true,
+        flag: true,
+      }, {
+        value: "custom icon URL 2",
+        RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920",
+        parent: true,
+        open: true,
+        flag: true,
+        childrens: [{values: "X", RedirectURL: "", open: true, flag: true}, {
+          values: "Y",
+          RedirectURL: "",
+          open: true,
+          flag: false
+        }, {values: "Z", RedirectURL: "UploadDeliverables.aspx?DeliverableID=89920", open: true, flag: true}]
+      }]
+    }]
+  };
+
 
   constructor(private store: Store<fromRoot.AppState>, private dashboardService: DashboardService) {
     this.lefTotal = 1800;
@@ -85,7 +162,7 @@ export class DashboardComponent implements OnInit {
 
 
   nextPage(dashBoardGridData, roadmapData) {
-    this.dashBoardGridData[dashBoardGridData].lineMomentTransform = ((this.dashBoardGridData[dashBoardGridData].lineMomentTransform * -1) < (((roadmapData < 10)?(roadmapData - 2):(roadmapData - 3)) * 150)) ? (this.dashBoardGridData[dashBoardGridData].lineMomentTransform - 330) : this.dashBoardGridData[dashBoardGridData].lineMomentTransform;
+    this.dashBoardGridData[dashBoardGridData].lineMomentTransform = ((this.dashBoardGridData[dashBoardGridData].lineMomentTransform * -1) < (((roadmapData < 10) ? (roadmapData - 2) : (roadmapData - 3)) * 150)) ? (this.dashBoardGridData[dashBoardGridData].lineMomentTransform - 330) : this.dashBoardGridData[dashBoardGridData].lineMomentTransform;
   }
 
   circleSpacing(dashBoardGridDataIndex, roadMapDataIndex) {
@@ -106,7 +183,7 @@ export class DashboardComponent implements OnInit {
       if (roadMapData.ActualEndDate) {
         // lineScale = ((roadMapDataIndex - 1) * 0.03) + 0.01;
         //(this.dashBoardGridData[dashBoardGridDataIndex].RoadmapData.length < 6) ? (roadMapDataIndex + 1) :
-        lineScale = (((roadMapDataIndex+1)) * 0.07);
+        lineScale = (((roadMapDataIndex + 1)) * 0.07);
         this.lineScale = {
           'transform': 'scaleX(' + lineScale + ')'
         };

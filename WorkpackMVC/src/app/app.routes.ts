@@ -5,11 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 import {ToDoListModule} from './pages/toDoList/to.do.list.module';
 import {EmailModule} from './pages/email/email.module';
 import {UserProfileModule} from './pages/user-profile/user-profile.module';
+import {WorkflowMasterModule} from './pages/workflow-master/workflow-master.module';
 
 
 export const routes: Routes = [
     { path: '', redirectTo: 'userManagement', pathMatch: 'full' },
     { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardModule' },
+    { path: 'workflowMaster', loadChildren: './pages/workflow-master/workflow-master.module#WorkflowMasterModule' },
     { path: 'userProfile', loadChildren: './pages/user-profile/user-profile.module#UserProfileModule' },
     { path: 'activityLog', loadChildren: './pages/activity/activity.log.module#ActivityLogModule' },
     { path: 'toDoList', loadChildren: './pages/toDoList/to.do.list.module#ToDoListModule' },

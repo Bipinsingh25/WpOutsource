@@ -218,6 +218,19 @@ export class SidebarService {
         'MenuVisible': 0,
         'OrderMenuHeader': 0,
         'DisableManHours': 0
+      }, {
+        // tslint:disable-next-line:max-line-length
+        'ModuleID': 13,
+        'ModuleName': 'Workflow Master',
+        'routerLink': '/workflowMaster',
+        'ParentModuleID': 1,
+        'URL': '',
+        'AnchorClass': '',
+        'CountClass': '',
+        'SortOrder': '',
+        'MenuVisible': 0,
+        'OrderMenuHeader': 0,
+        'DisableManHours': 0
       }
     ];
 

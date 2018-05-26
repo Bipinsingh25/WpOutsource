@@ -8,7 +8,8 @@
         <div class="actions col-sm-9" style="text-align: right;">
           <span><i class="fa fa-circle" style="color: #32c5d2"></i> &nbsp;Completed</span>
           <span style="margin-left: 5px;"><i class="fa fa-circle" style="color: #c49f47"></i> &nbsp;Pending, not delayed	</span>
-          <span style="margin-left: 5px;"><i class="fa fa-circle" style="color: #e7505a;"></i> &nbsp;Pending & delayed</span>
+          <span style="margin-left: 5px;"><i class="fa fa-circle"
+                                             style="color: #e7505a;"></i> &nbsp;Pending & delayed</span>
         </div>
       </div>
 
@@ -122,7 +123,8 @@
                              (click)="getMilestoneData(roadmapData.ProjectID, roadmapData.ProjectTaskID, roadmapData.TaskTypeID,roadmapData.StartDate,gridData.ProjectName,roadmapData.TaskName)"
                              [ngClass]="(roadMapDataIndex == 0)?(roadmapData.DummyText == 'G')?'border-after-green bg-after-green':(roadmapData.DummyText == 'R')?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red':
                                  (roadmapData.ActualEndDate)?'border-after-green bg-after-green':(roadmapData.Delay <= 0)?'border-after-yellow bg-after-yellow':'border-after-red bg-after-red'"
-                             [ngStyle]="circleSpacing(dashBoardGridDataIndex,roadMapDataIndex)" [attr.ttile]="roadmapData.TaskName">{{roadmapData.TaskName}}</a>
+                             [ngStyle]="circleSpacing(dashBoardGridDataIndex,roadMapDataIndex)"
+                             [attr.ttile]="roadmapData.TaskName">{{roadmapData.TaskName}}</a>
                         </li>
                       </ol>
                       <span class="filling-line bg-green" aria-hidden="true" [ngStyle]="this.lineScale"></span>
@@ -172,6 +174,112 @@
         <br>
         <strong>Checklist for {{modalTaskName}}</strong>
         <div [innerHTML]="vStr | safeHtml"></div>
+
+
+        <!--<div id="tree_1" class="tree-demo jstree jstree-1 jstree-default" role="tree" aria-multiselectable="true"
+             tabindex="0" aria-activedescendant="j1_4" aria-busy="false">
+          <ul class="jstree-container-ul jstree-children" role="group">
+            <li role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="j1_1_anchor" aria-expanded="true"
+                id="j1_1" class="jstree-node jstree-open"><i class="jstree-icon jstree-ocl" role="presentation"></i><a
+              class="jstree-anchor" href="#" tabindex="-1" id="j1_1_anchor"><i
+              class="jstree-icon jstree-themeicon fa fa-folder icon-state-warning icon-lg jstree-themeicon-custom"
+              role="presentation"></i> Root node 1
+            </a>
+              <ul role="group" class="jstree-children" style="">
+                <li role="treeitem" data-jstree="{ &quot;selected&quot; : true }" aria-selected="false" aria-level="2"
+                    aria-labelledby="j1_2_anchor" id="j1_2" class="jstree-node  jstree-leaf"><i
+                  class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="javascript:;"
+                                                                            tabindex="-1" id="j1_2_anchor"><i
+                  class="jstree-icon jstree-themeicon fa fa-folder icon-state-warning icon-lg jstree-themeicon-custom"
+                  role="presentation"></i> Initially selected </a></li>
+                <li role="treeitem" data-jstree="{ &quot;icon&quot; : &quot;fa fa-briefcase icon-state-success &quot; }"
+                    aria-selected="false" aria-level="2" aria-labelledby="j1_3_anchor" id="j1_3"
+                    class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl" role="presentation"></i><a
+                  class="jstree-anchor" href="#" tabindex="-1" id="j1_3_anchor"><i
+                  class="jstree-icon jstree-themeicon fa fa-briefcase icon-state-success  jstree-themeicon-custom"
+                  role="presentation"></i> custom icon URL </a></li>
+                <li role="treeitem" data-jstree="{ &quot;opened&quot; : true }" aria-selected="true" aria-level="2"
+                    aria-labelledby="j1_4_anchor" aria-expanded="true" id="j1_4" class="jstree-node  jstree-open"><i
+                  class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-clicked"
+                                                                            href="#" tabindex="-1" id="j1_4_anchor"><i
+                  class="jstree-icon jstree-themeicon fa fa-folder icon-state-warning icon-lg jstree-themeicon-custom"
+                  role="presentation"></i> initially open
+                </a>
+                  <ul role="group" class="jstree-children">
+                    <li role="treeitem" data-jstree="{ &quot;disabled&quot; : true }" aria-selected="false"
+                        aria-level="3" aria-labelledby="j1_5_anchor" aria-disabled="true" id="j1_5"
+                        class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl" role="presentation"></i><a
+                      class="jstree-anchor  jstree-disabled" href="#" tabindex="-1" id="j1_5_anchor"><i
+                      class="jstree-icon jstree-themeicon fa fa-folder icon-state-warning icon-lg jstree-themeicon-custom"
+                      role="presentation"></i> Disabled Node </a></li>
+                    <li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" aria-selected="false"
+                        aria-level="3" aria-labelledby="j1_6_anchor" id="j1_6"
+                        class="jstree-node  jstree-leaf jstree-last"><i class="jstree-icon jstree-ocl"
+                                                                        role="presentation"></i><a class="jstree-anchor"
+                                                                                                   href="#"
+                                                                                                   tabindex="-1"
+                                                                                                   id="j1_6_anchor"><i
+                      class="jstree-icon jstree-themeicon fa fa-file icon-state-warning icon-lg jstree-themeicon-custom"
+                      role="presentation"></i> Another node </a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" aria-selected="false"
+                aria-level="1" aria-labelledby="j1_8_anchor" id="j1_8" class="jstree-node  jstree-leaf jstree-last"><i
+              class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor"
+                                                                        href="http://www.jstree.com" tabindex="-1"
+                                                                        id="j1_8_anchor"><i
+              class="jstree-icon jstree-themeicon fa fa-file icon-state-warning icon-lg jstree-themeicon-custom"
+              role="presentation"></i> Clickanle link node </a></li>
+          </ul>
+        </div>-->
+        <div id="tree_1" class="tree-demo jstree jstree-1 jstree-default" role="tree" aria-multiselectable="true"
+             tabindex="0" aria-activedescendant="j1_4" aria-busy="false">
+          <ul class="jstree-container-ul jstree-children" role="group" *ngFor="let milestoneData of mileStoneObject.childrenData; let milestoneDataIndex=index;">
+            <li [hidden]="!milestoneData.parent" role="treeitem" aria-selected="false" aria-level="1" aria-labelledby="j1_1_anchor" [attr.aria-expanded]="milestoneData.open"
+                *ngIf="milestoneData.RedirectURL != ''"
+                id="j1_1" class="jstree-node" [ngClass]="milestoneData.open?'jstree-open':'jstree-closed'" (click)="milestoneData.open = !milestoneData.open"><i class="jstree-icon jstree-ocl" role="presentation"></i><a
+              class="jstree-anchor" href="#" tabindex="-1" id="j1_1_anchor"><i
+              class="jstree-icon jstree-themeicon fa fa-folder icon-state-warning icon-lg jstree-themeicon-custom"
+              role="presentation"></i> {{milestoneData.value}}<span *ngIf="milestoneData.flag" style="position: relative; top: 0; background-color: green;"><i class="fa fa-check" aria-hidden="true"></i></span>
+            </a>
+              <ul role="group" class="jstree-children" style="" *ngFor="let children of milestoneData.childrens; let childrenIndex = index;">
+                <li *ngIf="!children.parent && (children.RedirectURL != '')" role="treeitem" data-jstree="{ &quot;selected&quot; : true }" aria-selected="false" aria-level="2"
+                    aria-labelledby="j1_2_anchor" id="j1_2" class="jstree-node  jstree-leaf"><i
+                  class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor" href="javascript:;"
+                                                                            tabindex="-1" id="j1_2_anchor"><i
+                  class="jstree-icon jstree-themeicon fa fa-folder icon-state-warning icon-lg jstree-themeicon-custom"
+                  role="presentation"></i> {{children.value}} <span *ngIf="children.flag" style="position: relative; top: 0; background-color: green;"><i class="fa fa-check" aria-hidden="true"></i></span></a></li>
+                <li *ngIf="children.parent && (children.RedirectURL != '')" role="treeitem" data-jstree="{ &quot;opened&quot; : true }" aria-selected="true" aria-level="2"
+                    aria-labelledby="j1_4_anchor" aria-expanded="true" id="j1_4" class="jstree-node" [ngClass]="children.open?'jstree-open':'jstree-closed'" (click)="children.open = !children.open"><i
+                  class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor  jstree-clicked"
+                                                                            href="#" tabindex="-1" id="j1_4_anchor"><i
+                  class="jstree-icon jstree-themeicon fa fa-folder icon-state-warning icon-lg jstree-themeicon-custom"
+                  role="presentation"></i> {{children.value}}<span *ngIf="children.flag" style="position: relative; top: 0; background-color: green;"><i class="fa fa-check" aria-hidden="true"></i></span>
+                </a>
+                  <ul role="group" class="jstree-children" *ngFor="let grandChildren of children.childrens;let grandChildrenIndex = index;">
+                    <li *ngIf="grandChildren.RedirectURL != ''" role="treeitem" data-jstree="{ &quot;disabled&quot; : true }" aria-selected="false"
+                        aria-level="3" aria-labelledby="j1_5_anchor" aria-disabled="true" id="j1_5"
+                        class="jstree-node  jstree-leaf"><i class="jstree-icon jstree-ocl" role="presentation"></i><a
+                      class="jstree-anchor  jstree-disabled" href="#" tabindex="-1" id="j1_5_anchor"><i
+                      class="jstree-icon jstree-themeicon fa fa-folder icon-state-warning icon-lg jstree-themeicon-custom"
+                      role="presentation"></i> {{grandChildren.values}}<span *ngIf="grandChildren.flag" style="position: relative; top: 0; background-color: green;"><i class="fa fa-check" aria-hidden="true"></i></span> </a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!--<li *ngIf="milestoneData.RedirectURL != ''" [hidden]="milestoneData.parent" role="treeitem" data-jstree="{ &quot;type&quot; : &quot;file&quot; }" aria-selected="false"
+                aria-level="1" aria-labelledby="j1_8_anchor" id="j1_8" class="jstree-node  jstree-leaf jstree-last"><i
+              class="jstree-icon jstree-ocl" role="presentation"></i><a class="jstree-anchor"
+                                                                        href="http://www.jstree.com" tabindex="-1"
+                                                                        id="j1_8_anchor"><i
+              class="jstree-icon jstree-themeicon fa fa-file icon-state-warning icon-lg jstree-themeicon-custom"
+              role="presentation"></i> {{milestoneData.value}} <span *ngIf="milestoneData.flag" style="position: relative; top: 0; background-color: green;"><i class="fa fa-check" aria-hidden="true"></i></span></a></li>-->
+          </ul>
+        </div>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

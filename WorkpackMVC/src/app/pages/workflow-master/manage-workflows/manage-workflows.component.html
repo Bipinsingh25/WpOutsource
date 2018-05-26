@@ -1,0 +1,53 @@
+<a class="btn green-sharp btn-large" data-toggle="modal" href="#myModal">Add Workflow</a>
+
+<div class="table-scrollable table-scrollable-borderless">
+  <table class="table table-hover table-light" id="example">
+    <thead class="fixed-header">
+    <tr class="uppercase">
+      <th class="col-sm-3 dashboard-heading">Workflow Title</th>
+      <th class="col-sm-3 dashboard-heading">Task Types</th>
+      <th class="col-sm-3 dashboard-heading">Folders</th>
+      <th class="col-sm-3 dashboard-heading">Steps</th>
+    </tr>
+    </thead>
+    <tbody class="dashboard-table-body">
+    <tr *ngFor="let workflow of workflowData; let workflowIndex=index;">
+      <td class="col-sm-3">{{workflow.title}}</td>
+      <td class="col-sm-3"></td>
+      <td class="col-sm-3"></td>
+      <td class="col-sm-3"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade draggable-modal ui-draggable in ui-draggable-dragging" id="myModal" role="basic"
+     aria-hidden="true">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header ui-draggable-handle" draggable="true">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><strong>Workflow Name</strong>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="inbox-form-group">
+          <label class="control-label">Workflow Title:</label>
+          <div class="controls">
+            <input type="text" class="form-control" name="workflowTitle" [(ngModel)]="workflowTitle" placeholder="Enter Workflow Title"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="workflowTitleSubmit(workflowTitle)">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="workflowTitle = ''">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
