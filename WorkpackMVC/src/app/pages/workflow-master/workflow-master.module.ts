@@ -15,6 +15,7 @@ import {WorkflowMasterComponent} from './workflow-master.component';
 import { ManageWorkflowsComponent } from './manage-workflows/manage-workflows.component';
 import { HtmlformsComponent } from './htmlforms/htmlforms.component';
 import { DocumentTemplatesComponent } from './document-templates/document-templates.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 const components = [
   WorkflowMasterComponent,
@@ -30,6 +31,7 @@ const components = [
     RouterModule.forChild(routes),
     HotTableModule,
     Ng2SearchPipeModule,
+    NgSelectModule,
     BlockUIModule,
     ReactiveFormsModule
   ],
