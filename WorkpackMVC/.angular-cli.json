@@ -60,7 +60,10 @@
         "assets/layouts/global/scripts/quick-sidebar.min.js",
         "assets/layouts/layout4/scripts/layout.js",
         "assets/layouts/global/scripts/quick-nav.min.js",
-        "assets/global/plugins/ng-select/bundles/ng-select.umd.js"
+        "assets/global/plugins/ng-select/bundles/ng-select.umd.js",
+        "assets/global/plugins/dhtmlx-gantt/dhtmlxgantt.js",
+        "assets/global/plugins/dhtmlx-gantt/ext/dhtmlxgantt_critical_path.js"
+
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

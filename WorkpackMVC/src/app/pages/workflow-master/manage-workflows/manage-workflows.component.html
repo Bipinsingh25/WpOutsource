@@ -13,7 +13,7 @@
     <tbody class="dashboard-table-body">
     <tr *ngFor="let workflow of workflowData; let workflowIndex=index;">
       <td class="col-sm-3">{{workflow.title}}</td>
-      <td class="col-sm-3"></td>
+      <td class="col-sm-3">{{workflow.taskType}}<a data-toggle="modal" href="#taskTypes" (click)="getIndex(workflowIndex)">Edit</a></td>
       <td class="col-sm-3"></td>
       <td class="col-sm-3"></td>
     </tr>
@@ -45,6 +45,40 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="workflowTitleSubmit(workflowTitle)">Submit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="workflowTitle = ''">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Modal Task Types-->
+<div class="modal fade draggable-modal ui-draggable in ui-draggable-dragging" id="taskTypes" role="basic"
+     aria-hidden="true">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header ui-draggable-handle" draggable="true">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><strong>Task Types</strong>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="inbox-form-group">
+          <label class="control-label">Task Types:</label>
+          <ng-select
+            [items]="taskTypesData"
+            (change)="onTaskTypeChange($event)"
+            [multiple]="true"
+            [addTag]="true"
+            bindLabel="label"
+            bindValue="value"
+            placeholder="Select Task Type...">
+          </ng-select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="submitTaskTypeSelection()">Submit</button>
       </div>
     </div>
 

@@ -2,6 +2,10 @@ import {Component, ElementRef, OnInit, ViewChild} from "@angular/core";
 
 
 import "dhtmlx-gantt";
+import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_critical_path';
+
+import 'dhtmlx-gantt/codebase/ext/dhtmlxgantt_auto_scheduling';
+
 import {} from "@types/dhtmlxgantt";
 import {TaskService} from '../../services/task.service';
 import {LinkService} from '../../services/link.service';
@@ -33,33 +37,10 @@ export class GanttComponent implements OnInit {
   @ViewChild("gantt_here") ganttContainer: ElementRef;
   tasksData = {
     data: [
-      {
-        id: 1,
-        text: "Project #1",
-        start_date: "2017-04-10 00:00",
-        duration: 18,
-        end_date: "2017-04-27 00:00",
-        open: true
-      },
-      {
-        id: 2,
-        text: "Task #2",
-        start_date: "2017-04-15 00:00",
-        duration: 8,
-        parent: 1,
-        progress: 0.6,
-        end_date: "2017-04-17 00:00"
-      },
-      {
-        id: 3,
-        text: "Task #3",
-        start_date: "2017-04-18 00:00",
-        duration: 8,
-        parent: 1,
-        progress: 0.4,
-        end_date: "2017-04-20 00:00"
-      },
-      {id: 4, text: "Task #4", start_date: "2017-04-20 00:00", duration: 0, progress: 0.4, end_date: "2017-04-20 00:00"}
+      {id: 1, text: "Project #1", start_date: "01-04-2013", duration: 18, type: "project"},
+      {id: 2, text: "Task #1", start_date: "02-04-2013", duration: 8, parent: 1},
+      {id: 3, text: "Task #2", start_date: "02-04-2013", duration: 0, parent: 1, type: "milestone"},
+      {id: 4, text: "Task #3", start_date: "13-04-2013", duration: 8, parent: 1}
     ],
     links: [
       {id: 1, source: 1, target: 2, type: "1"},
@@ -76,17 +57,33 @@ export class GanttComponent implements OnInit {
     gantt.config.xml_date = "%m/%d/%Y";
     this.setScaleConfig("year");
     gantt.config.highlight_critical_path = true;
-
+    gantt.config.auto_scheduling = true;
+    /*gantt.config.lightbox.sections = [
+      {name: "description", height: 70, map_to: "text", type: "textarea", focus: true},
+      {name: "type", type: "typeselect", map_to: "type"},
+      {name: "time", type: "duration", map_to: "auto"}
+    ];*/
     gantt.init(this.ganttContainer.nativeElement);
-    this.ganttService.getChartData().subscribe(data => {
+    gantt.parse(this.tasksData);
+    console.log('gantt', gantt);
+    gantt.isCriticalTask(gantt.getTask(3));// ->'false'
+    gantt.isCriticalTask(gantt.getTask(4));// ->'true'
+    /*this.ganttService.getChartData().subscribe(data => {
       console.log('data', data);
       if (data) {
         this.tasksData = data;
         gantt.parse(this.tasksData);
+        this.tasksData.data.forEach(task => {
+          gantt.isCriticalTask(gantt.getTask(task.id));
+        });
+
+        this.tasksData.links.forEach(link => {
+          gantt.isCriticalLink(gantt.getLink(link.id));
+        });
       }
     }, err => {
       console.log('error in gantt get chart data', err);
-    });
+    });*/
     gantt.attachEvent("onAfterTaskAdd", (id, item) => {
       console.log('onAfterTaskAdd');
       this.taskService.insert(this.serializeTask(item, true))
