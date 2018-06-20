@@ -26,19 +26,37 @@ import {GanttService} from '../../services/gantt.service';
       }
     `],
   providers: [TaskService, LinkService],
-  template: `<label><input type="radio" name="scale" value="day" (change)="radioButtonCheck($event)"/>Day
-    scale</label>
-  <label><input type="radio" name="scale" value="week" (change)="radioButtonCheck($event)"/>Week scale</label>
-  <label><input type="radio" name="scale" value="month" (change)="radioButtonCheck($event)"/>Month scale</label>
-  <label><input type="radio" name="scale" value="year" checked (change)="radioButtonCheck($event)"/>Year scale</label>
-  <div #gantt_here style='width: 100%; height: 100%;'></div>`
+  template: `
+    <label><input type="radio" name="scale" value="day" (change)="radioButtonCheck($event)"/>Day
+      scale</label>
+    <label><input type="radio" name="scale" value="week" (change)="radioButtonCheck($event)"/>Week scale</label>
+    <label><input type="radio" name="scale" value="month" (change)="radioButtonCheck($event)"/>Month scale</label>
+    <label><input type="radio" name="scale" value="year" checked (change)="radioButtonCheck($event)"/>Year scale</label>
+    <div class="header gantt-demo-header">
+      <ul class="gantt-controls">
+        <li class="gantt-menu-item"><a data-action="collapseAll">Collapse
+          All</a></li>
+        <li class="gantt-menu-item gantt-menu-item-last"><a data-action="expandAll">Expand All</a></li>
+        <li class="gantt-menu-item"><a data-action="toggleAutoScheduling">Auto Scheduling</a></li>
+        <li class="gantt-menu-item"><a data-action="toggleCriticalPath">Critical
+          Path</a></li>
+        <li class="gantt-menu-item gantt-menu-item-right"><a data-action="fullscreen">Fullscreen</a></li>
+        <li class="gantt-menu-item gantt-menu-item-right gantt-menu-item-last"><a data-action="zoomToFit">Zoom to
+          Fit</a></li>
+        <li class="gantt-menu-item gantt-menu-item-right"><a data-action="zoomOut">Zoom
+          Out</a></li>
+        <li class="gantt-menu-item gantt-menu-item-right"><a data-action="zoomIn">Zoom
+          In</a></li>
+      </ul>
+    </div>
+    <div #gantt_here style='width: 100%; height: 100%;'></div>`
 })
 export class GanttComponent implements OnInit {
   @ViewChild("gantt_here") ganttContainer: ElementRef;
   tasksData = {
     data: [
       {id: 1, text: "Project #1", start_date: "01-04-2013", duration: 18, type: "project"},
-      {id: 2, text: "Task #1", start_date: "02-04-2013", duration: 8, parent: 1},
+      {id: 2, text: "Task #1", start_date: "02-04-2013", duration: 8, parent: 1, deadline: true},
       {id: 3, text: "Task #2", start_date: "02-04-2013", duration: 0, parent: 1, type: "milestone"},
       {id: 4, text: "Task #3", start_date: "13-04-2013", duration: 8, parent: 1}
     ],
@@ -56,16 +74,41 @@ export class GanttComponent implements OnInit {
     console.log('in ng oninit');
     gantt.config.xml_date = "%m/%d/%Y";
     this.setScaleConfig("year");
+    gantt.config.work_time = true;
+    gantt.config.skip_off_time = false;
     gantt.config.highlight_critical_path = true;
     gantt.config.auto_scheduling = true;
+    gantt.templates.scale_cell_class = function (date) {
+      if (date.getDay() == 0 || date.getDay() == 6) {
+        return "weekend";
+      }
+    };
+    gantt.templates.task_cell_class = function (item, date) {
+      if (date.getDay() == 0 || date.getDay() == 6) {
+        return "weekend";
+      }
+    };
     /*gantt.config.lightbox.sections = [
       {name: "description", height: 70, map_to: "text", type: "textarea", focus: true},
       {name: "type", type: "typeselect", map_to: "type"},
       {name: "time", type: "duration", map_to: "auto"}
     ];*/
     gantt.init(this.ganttContainer.nativeElement);
-    gantt.parse(this.tasksData);
-    console.log('gantt', gantt);
+    /*gantt.addTaskLayer(function draw_deadline(task) {
+      if (task.deadline) {
+        var el = document.createElement('div');
+        el.className = 'deadline';
+        var sizes = gantt.getTaskPosition(task, task.deadline);
+
+        el.style.left = sizes.left + 'px';
+        el.style.top = sizes.top + 'px';
+
+        el.setAttribute('title', gantt.templates.task_date(task.deadline));
+        return el;
+      }
+      return false;
+    });*/
+    gantt.parse(this.tasksData)
     gantt.isCriticalTask(gantt.getTask(3));// ->'false'
     gantt.isCriticalTask(gantt.getTask(4));// ->'true'
     /*this.ganttService.getChartData().subscribe(data => {
