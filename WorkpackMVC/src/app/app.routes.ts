@@ -11,6 +11,7 @@ import {WorkflowMasterModule} from './pages/workflow-master/workflow-master.modu
 export const routes: Routes = [
     { path: '', redirectTo: 'userManagement', pathMatch: 'full' },
     { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardModule' },
+    { path: 'createEmail', loadChildren: './pages/create-email/createEmail.module#CreateEmailModule' },
     { path: 'workflowMaster', loadChildren: './pages/workflow-master/workflow-master.module#WorkflowMasterModule' },
     { path: 'taskbar', loadChildren: './pages/tasks-grid/task.grid.module#TaskGridModule' },
     { path: 'userProfile', loadChildren: './pages/user-profile/user-profile.module#UserProfileModule' },

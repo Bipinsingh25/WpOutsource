@@ -242,6 +242,18 @@ export class SidebarService {
         'MenuVisible': 0,
         'OrderMenuHeader': 0,
         'DisableManHours': 0
+      },{
+        'ModuleID': 15,
+        'ModuleName': 'Create Email',
+        'routerLink': '/createEmail',
+        'ParentModuleID': 1,
+        'URL': '',
+        'AnchorClass': '',
+        'CountClass': '',
+        'SortOrder': '',
+        'MenuVisible': 0,
+        'OrderMenuHeader': 0,
+        'DisableManHours': 0
       }
     ];
 
