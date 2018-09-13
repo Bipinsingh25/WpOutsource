@@ -21,6 +21,7 @@ import {UserProfileService} from './user-profile.service';
 import {LinkService} from './link.service';
 import {TaskService} from './task.service';
 import {GanttService} from './gantt.service';
+import {TaskGridService} from './task-grid.service';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import {GanttService} from './gantt.service';
     UserProfileService,
     LinkService,
     TaskService,
+    TaskGridService,
     GanttService
   ]
 })

@@ -1,0 +1,138 @@
+<div *ngIf="taskGridData">
+  <div class="portlet light bordered">
+    <div class="portlet-body">
+      <div class="row">
+        <div class="form-group col-sm-6">
+            <label class="control-label">Project Name: </label>
+            <input type="search" class="form-control input-sm"
+                   placeholder=""
+                   [(ngModel)]="searchString"
+                   aria-controls="sample_1">
+
+        </div>
+        <div class="form-group col-sm-6">
+            <label class="control-label">Task Name: </label>
+            <input type="taskName" class="form-control input-sm"
+                   placeholder=""
+                   [(ngModel)]="taskName"
+                   aria-controls="sample_1">
+
+        </div>
+      </div>
+      <div class="row">
+	  <!--<ng-select [items]="departmentName"
+                     placeholder="Select Department"
+                     [(ngModel)]="selectedDepartment">
+          </ng-select>-->
+        <div class="form-group col-sm-6">
+          <label class="control-label">Department</label>
+          
+		  <select class="form-control" [(ngModel)]="selectedDepartment">
+            <option value="Select" disabled [selected]="selectedDepartment==''">Select...</option>
+            <option *ngFor="let deliverable of departmentName" [ngValue]="selectedDepartment"
+                    [selected]="selectedType == deliverable">
+              {{deliverable}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-sm-6">
+          <label class="control-label">Type</label>
+          
+          <select class="form-control" [(ngModel)]="selectedType">
+            <option value="Select" disabled [selected]="selectedType == ''">Select...</option>
+            <option *ngFor="let deliverable of type" [ngValue]="selectedType"
+                    [selected]="selectedType == deliverable">
+              {{deliverable}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="portlet light portlet-fit bordered">
+    <div class="portlet-title">
+      <div class="row">
+        <div class="caption col-sm-3">
+          <span class="caption-subject font-red sbold uppercase">Ongoing Tasks</span>
+        </div>
+        <div class="actions col-sm-9" style="text-align: right;">
+          <span><i class="fa fa-circle" style="color: #32c5d2"></i> &nbsp;Completed</span>
+          <span style="margin-left: 5px;"><i class="fa fa-circle" style="color: #c49f47"></i> &nbsp;Pending, not delayed	</span>
+          <span style="margin-left: 5px;"><i class="fa fa-circle"
+                                             style="color: #e7505a;"></i> &nbsp;Pending & delayed</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="portlet-body">
+      <div class="table-scrollable table-scrollable-borderless">
+        <table class="table table-hover table-light">
+          <thead class="fixed-header">
+          <tr class="uppercase">
+            <!--<th class="col-sm-1 dashboard-heading">Manage</th>-->
+            <!--<th class="col-sm-1 dashboard-heading">Number</th>-->
+            <th class="col-sm-2 dashboard-heading">Project Name</th>
+            <th class="col-sm-2 dashboard-heading">Task Name</th>
+            <th class="col-sm-1 dashboard-heading">Task Owner</th>
+            <th class="col-sm-1 dashboard-heading">Department</th>
+            <th class="col-sm-1 dashboard-heading">Type</th>
+            <th class="col-sm-5 dashboard-heading">Progress Roadmap</th>
+          </tr>
+          </thead>
+          <tbody class="dashboard-table-body">
+          <tr *ngFor="let gridData of taskGridData | filter: searchString; let taskGridDataIndex=index;"
+              [ngStyle]="initializeLeft(taskGridDataIndex)">
+
+
+            <td class="col-sm-2">{{gridData.ProjectName}}</td>
+            <td class="col-sm-2">{{gridData.TaskName}}</td>
+            <td class="col-sm-1">{{gridData.TaskOwner}}</td>
+            <td class="col-sm-1">{{gridData.DepartmentName}}</td>
+            <td class="col-sm-1">{{gridData.Type}}</td>
+            <td class="col-sm-5" *ngIf="gridData.RoadmapData && (gridData.RoadmapData.length == 0)">Project Roadmap not
+              defined.
+            </td>
+            <td class="col-sm-5" *ngIf="gridData.RoadmapData && (gridData.RoadmapData.length > 0)">
+              <div class="cd-horizontal-timeline mt-timeline-horizontal loaded" data-spacing="60">
+                <div class="timeline">
+                  <div class="events-wrapper">
+                    <div class="events" style="width: 2200px;"
+                         [ngStyle]="{'transform': 'translateX(' + gridData.lineMomentTransform + 'px)'}">
+                      <ol [ngStyle]="lineColoring(taskGridDataIndex)">
+                        <li *ngFor="let roadmapData of gridData.RoadmapData;let roadMapDataIndex = index;">
+                          <a data-date="roadmapData.TaskName" data-toggle="modal" href="javascript:void(0)"
+                             [ngClass]="(roadmapData.ActualEndDate == null) ? ((roadmapData.Delay <= 0)?'border-after-yellow bg-after-yellow' : 'border-after-red bg-after-red'): 'border-after-green bg-after-green'"
+                             [ngStyle]="circleSpacing(taskGridDataIndex,roadMapDataIndex)"
+                             [attr.ttile]="roadmapData.TaskName">{{roadmapData.TaskName}}</a>
+                        </li>
+                      </ol>
+                      <span class="filling-line bg-green" aria-hidden="true" [ngStyle]="this.lineScale"></span>
+                    </div>
+                    <!-- .events -->
+                  </div>
+                  <!-- .events-wrapper -->
+                  <ul class="cd-timeline-navigation mt-ht-nav-icon">
+                    <li>
+                      <a href="javascript:void(0)" class="prev btn btn-outline red md-skip active"
+                         (click)="previousPage(taskGridDataIndex)">
+                        <i class="fa fa-chevron-left"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0)" class="next btn btn-outline red md-skip"
+                         (click)="nextPage(taskGridDataIndex,gridData.RoadmapData.length)">
+                        <i class="fa fa-chevron-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                  <!-- .cd-timeline-navigation -->
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -22,6 +22,7 @@ import {DashboardEffects} from './dashboard.effects';
 import {ActivityLogEffects} from './activity.log.effects';
 import {ToDoListEffects} from './toDoList.effects';
 import {UserProfileEffects} from './user.profile.effects';
+import {TaskGridEffects} from './task.grid.effects';
 
 
 
@@ -44,7 +45,8 @@ import {UserProfileEffects} from './user.profile.effects';
       ProjectTemplateEffects,
       ExUserEffects,
       ProjectEffects,
-      UserProfileEffects
+      UserProfileEffects,
+      TaskGridEffects
     ])
   ]
 })

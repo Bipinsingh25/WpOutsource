@@ -18,6 +18,7 @@ import * as fromUserReducer from './user.reducer';
 import * as fromProjectTemplateReducer from './projectTemplate.reducers';
 import * as fromExUserReducer from './exUser.reducers';
 import * as fromUserProfileReducer from './user.profile.reducers';
+import * as fromTaskGridReducer from './task.grid.reducers';
 
 import {storeFreeze} from 'ngrx-store-freeze';
 import {createSelector} from 'reselect';
@@ -40,6 +41,7 @@ export interface AppState {
   projectTemplate: fromProjectTemplateReducer.State;
   exUser: fromExUserReducer.State;
   userProfileData: fromUserProfileReducer.State;
+  taskGridList: fromTaskGridReducer.State;
 
 }
 
@@ -60,7 +62,8 @@ const reducers = {
     sidebarMenu: fromSidebarReducer.reducer,
     projectTemplate: fromProjectTemplateReducer.reducer,
     exUser: fromExUserReducer.reducer,
-    userProfileData: fromUserProfileReducer.reducer
+    userProfileData: fromUserProfileReducer.reducer,
+    taskGridList: fromTaskGridReducer.reducer,
   }
 ;
 
@@ -157,6 +160,14 @@ export function getDashboardState(state: AppState): fromDashboardReducer.State {
 }
 
 export const getDashboard = compose(fromDashboardReducer.getDashboard, getDashboardState);
+
+// =============== Task Grid states and compose methods ===============================================
+
+export function getTaskGridState(state: AppState): fromTaskGridReducer.State {
+  return state && state.taskGridList;
+}
+
+export const getTaskGrid = compose(fromTaskGridReducer.getTaskGridList, getTaskGridState);
 
 // =============== Dashboard Menu List states and compose methods ===============================================
 

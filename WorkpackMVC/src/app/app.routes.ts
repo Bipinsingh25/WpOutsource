@@ -12,6 +12,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'userManagement', pathMatch: 'full' },
     { path: 'dashboard', loadChildren: './pages/dashboard/dashboard.module#DashboardModule' },
     { path: 'workflowMaster', loadChildren: './pages/workflow-master/workflow-master.module#WorkflowMasterModule' },
+    { path: 'taskbar', loadChildren: './pages/tasks-grid/task.grid.module#TaskGridModule' },
     { path: 'userProfile', loadChildren: './pages/user-profile/user-profile.module#UserProfileModule' },
     { path: 'activityLog', loadChildren: './pages/activity/activity.log.module#ActivityLogModule' },
     { path: 'toDoList', loadChildren: './pages/toDoList/to.do.list.module#ToDoListModule' },
