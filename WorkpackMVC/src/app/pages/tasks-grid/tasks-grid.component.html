@@ -20,17 +20,13 @@
         </div>
       </div>
       <div class="row">
-	  <!--<ng-select [items]="departmentName"
-                     placeholder="Select Department"
-                     [(ngModel)]="selectedDepartment">
-          </ng-select>-->
         <div class="form-group col-sm-6">
           <label class="control-label">Department</label>
           
 		  <select class="form-control" [(ngModel)]="selectedDepartment">
-            <option value="Select" disabled [selected]="selectedDepartment==''">Select...</option>
+            <option value="Select" disabled [selected]="selectedDepartment == ''">Select...</option>
             <option *ngFor="let deliverable of departmentName" [ngValue]="selectedDepartment"
-                    [selected]="selectedType == deliverable">
+                    [selected]="selectedDepartment == deliverable">
               {{deliverable}}
             </option>
           </select>

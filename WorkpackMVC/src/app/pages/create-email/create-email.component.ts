@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {EmailService} from '../../services/email.service';
+import{Component, OnInit}from '@angular/core';
+import {EmailService}from '../../services/email.service';
 import * as _ from 'lodash';
 @Component({
   selector: 'app-create-email',
@@ -15,11 +15,32 @@ export class CreateEmailComponent implements OnInit {
   file: any[];
   files: any[] = [];
 
+  /* PopUp Inputs */
+  popUpData: any;
+  selectedProject: string;
+  selectedTask: string;
+  selectedFolder: string;
+  fileData: any;
+
   constructor(private emailService: EmailService) {
+    this.selectedProject = '';
+    this.selectedTask = '';
+    this.selectedFolder = '';
     this.emailData = {
                       Subject: '',
                       Message: ''
                       };
+
+    this.popUpData = {
+                      projects: ['A','B','C'],
+                      tasks: ['X', 'Y', 'Z'],
+                      folders: ['P', 'Q', 'R'],
+                      };
+
+    this.fileData = [{checked: false,
+                      id: 123,
+                      fileName: 'test',
+                      fileSize: '10KB'}];
   }
 
   ngOnInit() {
@@ -29,6 +50,10 @@ export class CreateEmailComponent implements OnInit {
       }
     })
   }
+
+insertIntoMailBox(){
+  console.log('this.fileData',this.fileData);
+}
 
   onClickUploadDocument(event) {
     console.log("clicked");

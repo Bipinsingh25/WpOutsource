@@ -11,16 +11,87 @@
     </tr>
     </thead>
     <tbody class="dashboard-table-body">
-    <tr *ngFor="let workflow of workflowData; let workflowIndex=index;">
+    <tr *ngFor="let workflow of workflowData; let workflowIndex=index;" [ngStyle]="initializeLeft(workflowIndex)">
       <td class="col-sm-3">{{workflow.title}}</td>
-      <td class="col-sm-3">{{workflow.taskType}}<a data-toggle="modal" href="#taskTypes" (click)="getIndex(workflowIndex)">Edit</a></td>
+      <td class="col-sm-3">{{workflow.taskType}}<a data-toggle="modal" href="#taskTypes"
+                                                   (click)="getIndex(workflowIndex)">Edit</a></td>
       <td class="col-sm-3"></td>
-      <td class="col-sm-3"></td>
+      <td class="col-sm-3">
+        <div class="cd-horizontal-timeline mt-timeline-horizontal loaded" data-spacing="60">
+          <div class="timeline">
+            <div class="events-wrapper">
+              <div class="events" style="width: 1800px;" [ngStyle]="{'transform': 'translateX(' + workflow.lineMomentTransform + 'px)'}">
+                <ol>
+                  <li *ngFor="let roadmapData of workflow.roadmapData;let roadMapDataIndex = index;">
+                    <a href="javascript:void(0)" data-date="roadmapData.taskName" class="border-after-red bg-after-red older-event"
+                       [ngStyle]="circleSpacing(workflowIndex,roadMapDataIndex)"
+                       [attr.ttile]="roadmapData.TaskName">{{roadmapData.taskName}}</a>
+                  </li>
+                </ol>
+                <!--<span class="filling-line bg-red" aria-hidden="true" style="transform: scaleX(0.442496);"></span>-->
+              </div>
+              <!-- .events -->
+            </div>
+            <!-- .events-wrapper -->
+            <ul class="cd-timeline-navigation mt-ht-nav-icon">
+              <li>
+                <a href="javascript:void(0)" class="prev btn btn-outline red md-skip active" (click)="previousPage(workflowIndex)">
+                  <i class="fa fa-chevron-left"></i>
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="next btn btn-outline red md-skip" (click)="nextPage(workflowIndex,workflow.roadmapData.length)">
+                  <i class="fa fa-chevron-right"></i>
+                </a>
+              </li>
+            </ul>
+            <!-- .cd-timeline-navigation -->
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    <tr>
+      <!--<div class="cd-horizontal-timeline mt-timeline-horizontal loaded" data-spacing="60">
+        <div class="timeline">
+          <div class="events-wrapper">
+            <div class="events" style="width: 1800px;"
+                 [ngStyle]="{'transform': 'translateX(' + workflow.lineMomentTransform + 'px)'}">
+              <ol>
+                <li *ngFor="let roadmapData of workflow.RoadmapData;let roadMapDataIndex = index;">
+                  <a data-date="roadmapData.TaskName" data-toggle="modal" href="#myModal"
+                     class="border-after-yellow bg-after-yellow':'border-after-red bg-after-red"
+                     [ngStyle]="circleSpacing(workflowIndex,roadMapDataIndex)"
+                     [attr.ttile]="roadmapData.TaskName">{{roadmapData.TaskName}}</a>
+                </li>
+              </ol>
+              <span class="filling-line bg-green" aria-hidden="true"></span>
+            </div>
+            &lt;!&ndash; .events &ndash;&gt;
+          </div>
+          &lt;!&ndash; .events-wrapper &ndash;&gt;
+          <ul class="cd-timeline-navigation mt-ht-nav-icon">
+            <li>
+              <a href="javascript:void(0)" class="prev btn btn-outline red md-skip active"
+                 (click)="previousPage(workflowDataSelectedIndex)">
+                <i class="fa fa-chevron-left"></i>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0)" class="next btn btn-outline red md-skip"
+                 (click)="nextPage(workflowDataSelectedIndex,gridData.RoadmapData.length)">
+                <i class="fa fa-chevron-right"></i>
+              </a>
+            </li>
+          </ul>
+          &lt;!&ndash; .cd-timeline-navigation &ndash;&gt;
+        </div>
+      </div>-->
     </tr>
     </tbody>
   </table>
 </div>
-
 
 
 <!-- Modal -->
@@ -39,11 +110,14 @@
         <div class="inbox-form-group">
           <label class="control-label">Workflow Title:</label>
           <div class="controls">
-            <input type="text" class="form-control" name="workflowTitle" [(ngModel)]="workflowTitle" placeholder="Enter Workflow Title"></div>
+            <input type="text" class="form-control" name="workflowTitle" [(ngModel)]="workflowTitle"
+                   placeholder="Enter Workflow Title"></div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="workflowTitleSubmit(workflowTitle)">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="workflowTitleSubmit(workflowTitle)">
+          Submit
+        </button>
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="workflowTitle = ''">Close</button>
       </div>
     </div>
@@ -78,7 +152,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="submitTaskTypeSelection()">Submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="submitTaskTypeSelection()">Submit
+        </button>
       </div>
     </div>
 

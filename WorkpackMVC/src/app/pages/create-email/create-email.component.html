@@ -153,10 +153,82 @@
         </h4>
       </div>
       <div class="modal-body">
-        Add files from Webpack
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label class="control-label">Select Project</label>
+
+            <select class="form-control" [(ngModel)]="selectedProject">
+              <option value="Select" disabled [selected]="selectedProject==''">Select...</option>
+              <option *ngFor="let deliverable of popUpData.projects" [ngValue]="selectedProject"
+                      [selected]="selectedProject == deliverable">
+                {{deliverable}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="control-label">Select Task</label>
+
+            <select class="form-control" [(ngModel)]="selectedTask">
+              <option value="Select" disabled [selected]="selectedTask == ''">Select...</option>
+              <option *ngFor="let deliverable of popUpData.tasks" [ngValue]="selectedTask"
+                      [selected]="selectedTask == deliverable">
+                {{deliverable}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label class="control-label">Select Folder</label>
+
+            <select class="form-control" [(ngModel)]="selectedFolder">
+              <option value="Select" disabled [selected]="selectedFolder == ''">Select...</option>
+              <option *ngFor="let folder of popUpData.folders" [ngValue]="selectedFolder"
+                      [selected]="selectedFolder == folder">
+                {{folder}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <!--File List-->
+        <div class="portlet light portlet-fit bordered">
+          <div class="portlet-title">
+            <div class="row">
+              <div class="caption col-sm-3">
+                <span class="caption-subject font-red sbold uppercase">File List</span>
+              </div>
+            </div>
+          </div>
+          <div class="portlet-body">
+            <div class="table-scrollable table-scrollable-borderless">
+              <table class="table table-hover table-light">
+                <thead class="fixed-header">
+                <tr class="uppercase">
+                  <th class="col-sm-2 dashboard-heading">Select</th>
+                  <th class="col-sm-4 dashboard-heading">File Name</th>
+                  <th class="col-sm-3 dashboard-heading">File Size</th>
+                </tr>
+                </thead>
+                <tbody class="dashboard-table-body">
+                <tr *ngFor="let gridData of fileData">
+                  <td class="col-sm-2">
+                    <input type="checkbox" [(ngModel)]="gridData.checked" [name]="gridData.id">
+                  </td>
+                  <td class="col-sm-4">{{gridData.fileName}}</td>
+                  <td class="col-sm-3">{{gridData.fileSize}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--End of File List-->
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click) = "insertIntoMailBox()">Insert into MailBox</button>
       </div>
     </div>
   </div>

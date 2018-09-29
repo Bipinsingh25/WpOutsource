@@ -5,3 +5,7 @@
 .workpack-modal:hover{
   color: white;
 }
+
+.dashboard-heading {
+  padding-left: 0;
+}
